@@ -1,4 +1,5 @@
-"use client";
+// components/gallery/GalleryGrid.tsx
+"use client"; // ✅ EKLE
 
 import { useState } from "react";
 import Image from "next/image";
@@ -22,13 +23,13 @@ const GalleryGrid = ({ activeFilter }: GalleryGridProps) => {
         {filteredItems.map((item) => (
           <div key={item.id} className="group flex flex-col gap-4">
             <div
-              className="relative w-full aspect-3/4 rounded-xl overflow-hidden cursor-pointer shadow-lg bg-surface-dark border border-white/5"
+              className="relative w-full aspect-[4/3] rounded-xl overflow-hidden cursor-pointer shadow-lg bg-gray-800 border border-white/5"
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
               {/* Label Badge */}
               <div className="absolute top-3 left-3 z-20 bg-black/60 backdrop-blur-md px-3 py-1 rounded text-xs font-bold text-white border border-white/10 uppercase">
-                {item.categoryName}
+                {item.category.replace("-", " ")}
               </div>
 
               {/* After Image */}
@@ -42,6 +43,7 @@ const GalleryGrid = ({ activeFilter }: GalleryGridProps) => {
                   alt={item.alt}
                   fill
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute bottom-3 right-3 bg-accent text-primary-500 text-xs font-bold px-2 py-1 rounded">
                   SONRASI
@@ -55,6 +57,7 @@ const GalleryGrid = ({ activeFilter }: GalleryGridProps) => {
                   alt={item.alt}
                   fill
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute bottom-3 right-3 bg-black/70 text-white text-xs font-bold px-2 py-1 rounded">
                   ÖNCESİ
@@ -94,7 +97,7 @@ const GalleryGrid = ({ activeFilter }: GalleryGridProps) => {
 
       {filteredItems.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-slate-custom text-lg">
+          <p className="text-white/75 text-lg">
             Bu kategoride henüz proje bulunmamaktadır.
           </p>
         </div>

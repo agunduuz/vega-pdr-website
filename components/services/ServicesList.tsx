@@ -1,3 +1,4 @@
+// components/services/ServicesList.tsx
 "use client";
 
 import { memo, useState, useMemo, useCallback } from "react";
@@ -29,7 +30,7 @@ const ServicesList = memo(function ServicesList() {
             initial: { opacity: 0, y: 20 },
             animate: { opacity: 1, y: 0 },
           },
-    [shouldReduceMotion]
+    [shouldReduceMotion],
   );
 
   // ✅ useCallback: FAQ toggle
@@ -44,7 +45,7 @@ const ServicesList = memo(function ServicesList() {
         ...service,
         iconComponent: ICON_MAP[service.icon as keyof typeof ICON_MAP],
       })),
-    []
+    [],
   );
 
   return (

@@ -1,3 +1,4 @@
+// components/layout/InteractiveMap.tsx
 "use client";
 
 import { useState, memo } from "react";
