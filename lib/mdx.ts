@@ -27,7 +27,7 @@ export function getAllServiceSlugs(): string[] {
 
 // Get single service MDX data
 export async function getServiceBySlug(
-  slug: string
+  slug: string,
 ): Promise<ServiceMDXData | null> {
   try {
     const fullPath = path.join(servicesDirectory, `${slug}.mdx`);
@@ -56,9 +56,9 @@ export async function getServiceBySlug(
 export async function getAllServices(): Promise<ServiceMDXData[]> {
   const slugs = getAllServiceSlugs();
   const services = await Promise.all(
-    slugs.map((slug) => getServiceBySlug(slug))
+    slugs.map((slug) => getServiceBySlug(slug)),
   );
   return services.filter(
-    (service): service is ServiceMDXData => service !== null
+    (service): service is ServiceMDXData => service !== null,
   );
 }

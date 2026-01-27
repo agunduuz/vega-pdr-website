@@ -1,3 +1,4 @@
+// components/services/detail/ServiceDetailArticle.tsx
 "use client";
 
 import { memo } from "react";

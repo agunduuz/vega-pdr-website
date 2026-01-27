@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { serialize } from "next-mdx-remote/serialize";
 import ServiceDetailHero from "@/components/services/detail/ServiceDetailHero";
 import ServiceDetailLayout from "@/components/services/detail/ServiceDetailLayout";
-import ServiceDetailArticle from "@/components/services/detail/ServiceDetailArticle";
+import ServiceDetailArticle from "@/components/services/detail/ServiceDetailArticle"; // ✅ GERİ GETİR
 import ServiceDetailSidebar from "@/components/services/detail/ServiceDetailSidebar";
 import { getServiceBySlug, getAllServiceSlugs } from "@/lib/mdx";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -15,15 +15,11 @@ interface ServicePageProps {
   }>;
 }
 
-// Generate static paths
 export async function generateStaticParams() {
   const slugs = getAllServiceSlugs();
-  return slugs.map((slug) => ({
-    slug,
-  }));
+  return slugs.map((slug) => ({ slug }));
 }
 
-// Generate metadata for SEO
 export async function generateMetadata({
   params,
 }: ServicePageProps): Promise<Metadata> {
@@ -31,9 +27,7 @@ export async function generateMetadata({
   const service = await getServiceBySlug(slug);
 
   if (!service) {
-    return {
-      title: "Hizmet Bulunamadı",
-    };
+    return { title: "Hizmet Bulunamadı" };
   }
 
   return {
@@ -49,7 +43,6 @@ export async function generateMetadata({
   };
 }
 
-// Main page component
 export default async function ServiceDetailPage({ params }: ServicePageProps) {
   const { slug } = await params;
   const service = await getServiceBySlug(slug);
@@ -58,10 +51,8 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     notFound();
   }
 
-  // Serialize MDX content
   const mdxSource = await serialize(service.content);
 
-  // Extract benefits from services-data or MDX
   const benefits = [
     "Orijinal boya korunur",
     "Aracın değeri düşmez",
@@ -89,7 +80,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       >
         <ServiceDetailArticle
           featuredImage={service.featuredImage}
-          featuredImageAlt={`${service.title} - Vega Boyasız Göçük Düzeltme`}
+          featuredImageAlt={`${service.title} - Vega PDR`}
           mdxSource={mdxSource}
         />
       </ServiceDetailLayout>
