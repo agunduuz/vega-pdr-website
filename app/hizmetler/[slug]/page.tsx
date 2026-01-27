@@ -1,3 +1,4 @@
+// app/hizmetler/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { serialize } from "next-mdx-remote/serialize";
