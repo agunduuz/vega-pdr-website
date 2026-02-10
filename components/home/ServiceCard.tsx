@@ -1,6 +1,7 @@
 "use client";
 
 import { memo } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, LucideIcon } from "lucide-react";
 import Image from "next/image";
@@ -10,16 +11,19 @@ interface ServiceCardProps {
   title: string;
   description: string;
   image: string;
+  slug: string;
   icon: LucideIcon;
   index: number;
   shouldReduceMotion: boolean | null;
 }
+const MotionLink = motion.create(Link);
 
 const ServiceCard = memo(function ServiceCard({
   id,
   title,
   description,
   image,
+  slug,
   icon: Icon,
   index,
   shouldReduceMotion,
@@ -33,7 +37,8 @@ const ServiceCard = memo(function ServiceCard({
       };
 
   return (
-    <motion.article
+    <MotionLink
+      href={`/hizmetler/${slug}`} // ✅ slug prop'u ekle
       {...fadeInUp}
       whileInView="animate"
       viewport={{ once: true }}
@@ -93,7 +98,7 @@ const ServiceCard = memo(function ServiceCard({
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </div>
       </div>
-    </motion.article>
+    </MotionLink>
   );
 });
 

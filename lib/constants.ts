@@ -29,6 +29,7 @@ export const SERVICES = [
       "Orijinal boyayı koruyarak, aracınızın değerini düşürmeden kaporta hasarı onarımı.",
     icon: "wrench",
     image: "/images/pdr-1.webp",
+    slug: "boyasiz-gocuk-duzeltme",
     features: [
       "Orijinal boya korunur",
       "Araç değeri düşmez",
@@ -43,6 +44,7 @@ export const SERVICES = [
       "Ciddi hasarlar için profesyonel kaporta düzeltme ve onarım hizmetleri.",
     icon: "hammer",
     image: "/images/kaporta-1.webp",
+    slug: "kaporta-boya-onarim",
     features: [
       "Profesyonel onarım",
       "Kaliteli malzeme",
@@ -57,6 +59,7 @@ export const SERVICES = [
       "Derin çizikler ve boya hasarları için lokal boya uygulaması. Renk uyumu garantili.",
     icon: "paintbrush",
     image: "/images/boya-1.webp",
+    slug: "lokal-boya",
     features: [
       "Renk tonu uyumu",
       "Kaliteli boya",
@@ -310,8 +313,7 @@ export const SERVICES_PAGE_DATA = [
     description:
       "Orijinal boyayı koruyarak, aracınızda oluşan göçükleri değer kaybı yaşatmadan onarıyoruz. Dolu hasarı ve park kazaları için en ideal çözüm.",
     icon: "Wrench",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBz1M9wJe_jDH7GIzVOtBjUPK29CuOeQNr6ne-AC-6eIFtsIZEPpm0CKRSXEjUJpo-_TJtjK5mTzmZhwec-hzi8I3A-gT8v8Y0kB8__rDS5ycxousWcl5yY5mIMvZkQlHepfz-YE-WWLH6uVX6ZodsNNTwKP8dRaI632swjMNAMsyhVLckFRFuJQyX4c333i9crET1Jq-Sd9XGwMaByntHOea17fGlzN7oPH61azvk_BijadYCWbF3maTKa4puypIQmT89TkqmtDPj_",
+    image: "/images/services/boyasiz-gocuk-duzeltme.webp",
     slug: "boyasiz-gocuk-duzeltme",
   },
   {
@@ -320,8 +322,7 @@ export const SERVICES_PAGE_DATA = [
     description:
       "Sadece hasarlı bölgeye uygulanan, renk farkı yaratmayan mikro onarım tekniği. Çizikler ve küçük sürtmeler için ekonomik ve hızlı.",
     icon: "Droplet",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAuAmu4wXEh4JxfdtZHaJFhEtyts8ml4cjL8sPZHJiMu3jw30vIA7NU6MPARHXJdFoMtF7i8OK0Yh_Z6IpNEBCYjzKK0b9BPLKMC5wigAYpJ4gJQUFBKESPEEmK1CpkK2K3v-1F4UL2jyhTKKVZj0fX5gWM9bguDM3mB-X0DYAUJ_ddkp-WcxcTRm9MiDLzxEjqqDoezK-9WdS4XWcLXs7_kZ692GDsAT2Nr0XavH5xuKAQ4eN4b0WtoWKwl3MGxF290rVD04x8UdGu",
+    image: "/images/services/boya.webp",
     slug: "lokal-boya",
   },
   {
@@ -330,8 +331,7 @@ export const SERVICES_PAGE_DATA = [
     description:
       "Yoğun dolu yağışı sonrası oluşan yüzlerce göçüğü, özel masaj tekniği ile boyaya zarar vermeden tek tek düzeltiyoruz.",
     icon: "Cloud",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCKdrNs36Q48P1GfbYmJO3ByKIUMxFQ6Pokcc3pTRw4HFD0OgsVzZTBjAssQT2ekrctOf3N3EJc-YUul8hgja3rtPV2ALYG7x_ofwprm3s8DItyh3zryfDXg_Bz5GNKCtqpmo8-WSEW7mgPluhvcWeDp1R5npFtkaF5DaYT8KupPIMl9SqIDtPHKyXmSbrV9R2iMPaf--9fWN1zlo58AGm5hDdIu5OGtcT2hMv5tnRoZzWD5v0T2QdNgF9ysjYyIc56O_qL3dU0PSzr",
+    image: "/images/services/dolu-onarim.webp",
     slug: "dolu-hasari",
   },
   {

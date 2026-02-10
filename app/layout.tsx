@@ -130,7 +130,6 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <head>
-        <link rel="dns-prefetch" href="https://lh3.googleusercontent.com" />
         {/* ✅ Schema.org Yapısal Veri */}
         <script
           type="application/ld+json"

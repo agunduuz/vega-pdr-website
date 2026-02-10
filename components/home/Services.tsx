@@ -108,6 +108,7 @@ export default function Services() {
               title={service.title}
               description={service.description}
               image={service.image}
+              slug={service.slug}
               icon={iconMap[service.icon]}
               index={index}
               shouldReduceMotion={shouldReduceMotion}

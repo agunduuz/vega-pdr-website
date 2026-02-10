@@ -24,8 +24,7 @@ export const SERVICES_DETAILS: Record<string, ServiceDetail> = {
     description:
       "Aracınızın orijinal boyasını bozmadan, özel el aletleri ve masaj tekniği ile fabrikasyon formuna geri döndürüyoruz.",
     badge: "En Çok Tercih Edilen Hizmet",
-    heroImage:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBz1M9wJe_jDH7GIzVOtBjUPK29CuOeQNr6ne-AC-6eIFtsIZEPpm0CKRSXEjUJpo-_TJtjK5mTzmZhwec-hzi8I3A-gT8v8Y0kB8__rDS5ycxousWcl5yY5mIMvZkQlHepfz-YE-WWLH6uVX6ZodsNNTwKP8dRaI632swjMNAMsyhVLckFRFuJQyX4c333i9crET1Jq-Sd9XGwMaByntHOea17fGlzN7oPH61azvk_BijadYCWbF3maTKa4puypIQmT89TkqmtDPj_",
+    heroImage: "/images/services/boyasiz-gocuk-duzeltme.webp",
     icon: "Wrench",
     features: [
       "Orijinal boya korunur",
@@ -79,8 +78,7 @@ export const SERVICES_DETAILS: Record<string, ServiceDetail> = {
     description:
       "Sadece hasarlı bölgeye uygulanan, renk farkı yaratmayan mikro onarım tekniği. Çizikler ve küçük sürtmeler için ekonomik ve hızlı.",
     badge: "Hızlı Çözüm",
-    heroImage:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAuAmu4wXEh4JxfdtZHaJFhEtyts8ml4cjL8sPZHJiMu3jw30vIA7NU6MPARHXJdFoMtF7i8OK0Yh_Z6IpNEBCYjzKK0b9BPLKMC5wigAYpJ4gJQUFBKESPEEmK1CpkK2K3v-1F4UL2jyhTKKVZj0fX5gWM9bguDM3mB-X0DYAUJ_ddkp-WcxcTRm9MiDLzxEjqqDoezK-9WdS4XWcLXs7_kZ692GDsAT2Nr0XavH5xuKAQ4eN4b0WtoWKwl3MGxF290rVD04x8UdGu",
+    heroImage: "/images/services/boya.webp",
     icon: "Droplet",
     features: [
       "Bilgisayarlı renk eşleştirme",
@@ -134,8 +132,7 @@ export const SERVICES_DETAILS: Record<string, ServiceDetail> = {
     description:
       "Yoğun dolu yağışı sonrası oluşan yüzlerce göçüğü, özel masaj tekniği ile boyaya zarar vermeden tek tek düzeltiyoruz.",
     badge: "Sigorta Destekli",
-    heroImage:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCKdrNs36Q48P1GfbYmJO3ByKIUMxFQ6Pokcc3pTRw4HFD0OgsVzZTBjAssQT2ekrctOf3N3EJc-YUul8hgja3rtPV2ALYG7x_ofwprm3s8DItyh3zryfDXg_Bz5GNKCtqpmo8-WSEW7mgPluhvcWeDp1R5npFtkaF5DaYT8KupPIMl9SqIDtPHKyXmSbrV9R2iMPaf--9fWN1zlo58AGm5hDdIu5OGtcT2hMv5tnRoZzWD5v0T2QdNgF9ysjYyIc56O_qL3dU0PSzr",
+    heroImage: "/images/services/dolu-onarim.webp",
     icon: "Cloud",
     features: [
       "Kapsamlı dolu hasarı onarımı",
@@ -189,8 +186,7 @@ export const SERVICES_DETAILS: Record<string, ServiceDetail> = {
     description:
       "Samsun kaporta boya hizmetimizle aracınızın hasarlı bölgelerini profesyonel ekipman ve kaliteli boya sistemleriyle ilk günkü görünümüne kavuşturuyoruz.",
     badge: "Samsun'un Tercih Edilen Servisi",
-    heroImage:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCkKX4f6b4G0o6m8pQdZx2t5fap_GVx9hMZrF4sQmZ0n8yX4U0N0HfE2Y1pUuH3Hjz5m8xS4zZq6F1L2QkLr0A6D1fX8U7Y9bTqZs9Sg",
+    heroImage: "/images/services/kaporta-onarim.webp",
     icon: "Car",
     features: [
       "Orijinal renge birebir boya uyumu",
