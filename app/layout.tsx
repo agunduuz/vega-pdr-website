@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       "https://samsunboyasizgocukduzeltme.com",
   ),
   verification: {
-    google: "googlee5b971b378e2ec1b.html",
+    google: "9JTyaX0QC-RzRCctKzOHZU9YxgMvjmkuW47opCuTBMs",
   },
   title: {
     default: SITE_CONFIG.fullName,
