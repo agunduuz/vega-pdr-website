@@ -17,7 +17,7 @@ export const SITE_CONFIG = {
   workingHoursFull: "Pazar: Kapalı",
   whatsappMessage: "Merhaba, aracımın hasarı için bilgi almak istiyorum.",
   social: {
-    instagram: "https://instagram.com/vegaboyasizgocukduzeltme",
+    instagram: "https://instagram.com/vegagocukduzeltme",
   },
 };
 

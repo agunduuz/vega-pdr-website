@@ -67,11 +67,74 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // ✅ Schema.org - Google'a işletme bilgilerini tanıt
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    name: SITE_CONFIG.fullName,
+    alternateName: "Vega PDR",
+    description: SITE_CONFIG.description,
+    url: "https://www.samsunboyasizgocukduzeltme.com",
+    telephone: SITE_CONFIG.phone,
+    email: SITE_CONFIG.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Yenimahalle, 54. Sk. Gülsan Sanayi Sitesi No: 12",
+      addressLocality: "Canik",
+      addressRegion: "Samsun",
+      postalCode: "55080",
+      addressCountry: "TR",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: "41.2722623",
+      longitude: "36.3640689",
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ],
+        opens: "08:30",
+        closes: "19:00",
+      },
+    ],
+    priceRange: "₺₺",
+    image: "https://www.samsunboyasizgocukduzeltme.com/images/og-image.jpg",
+    logo: "https://www.samsunboyasizgocukduzeltme.com/vega-logo.svg",
+    hasMap: SITE_CONFIG.googleMapsLink,
+    sameAs: [SITE_CONFIG.social.instagram],
+    servesCuisine: null,
+    areaServed: {
+      "@type": "City",
+      name: "Samsun",
+    },
+    knowsAbout: [
+      "Boyasız Göçük Düzeltme",
+      "PDR",
+      "Dolu Hasarı Onarımı",
+      "Kaporta Onarımı",
+      "Lokal Boya",
+    ],
+  };
+
   return (
     <html lang="tr">
       <head>
-        {/* ✅ DNS prefetch */}
         <link rel="dns-prefetch" href="https://lh3.googleusercontent.com" />
+        {/* ✅ Schema.org Yapısal Veri */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessSchema),
+          }}
+        />
       </head>
       <body className={inter.className}>
         <Header />
