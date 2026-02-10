@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ||
       "https://samsunboyasizgocukduzeltme.com",
   ),
+  verification: {
+    google: "googlee5b971b378e2ec1b.html",
+  },
   title: {
     default: SITE_CONFIG.fullName,
     template: `%s | ${SITE_CONFIG.fullName}`,
