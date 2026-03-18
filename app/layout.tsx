@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ||
       "https://samsunboyasizgocukduzeltme.com",
   ),
+  alternates: {
+    canonical: "/", // Her sayfada override edilebilir
+  },
   verification: {
     google: "9JTyaX0QC-RzRCctKzOHZU9YxgMvjmkuW47opCuTBMs",
   },
@@ -77,7 +80,7 @@ export default function RootLayout({
     name: SITE_CONFIG.fullName,
     alternateName: "Vega PDR",
     description: SITE_CONFIG.description,
-    url: "https://www.samsunboyasizgocukduzeltme.com",
+    url: "https://samsunboyasizgocukduzeltme.com",
     telephone: SITE_CONFIG.phone,
     email: SITE_CONFIG.email,
     address: {
@@ -109,8 +112,8 @@ export default function RootLayout({
       },
     ],
     priceRange: "₺₺",
-    image: "https://www.samsunboyasizgocukduzeltme.com/images/og-image.jpg",
-    logo: "https://www.samsunboyasizgocukduzeltme.com/vega-logo.svg",
+    image: "https://samsunboyasizgocukduzeltme.com/images/og-image.jpg",
+    logo: "https://samsunboyasizgocukduzeltme.com/vega-logo.svg",
     hasMap: SITE_CONFIG.googleMapsLink,
     sameAs: [SITE_CONFIG.social.instagram],
     servesCuisine: null,

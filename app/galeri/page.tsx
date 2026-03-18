@@ -5,6 +5,9 @@ import GalleryMain from "@/components/gallery/GalleryMain";
 
 export const metadata: Metadata = {
   title: `Galeri | ${SITE_CONFIG.fullName}`,
+  alternates: {
+    canonical: "/galeri",
+  },
   description:
     "40 yıllık tecrübemizle gerçekleştirdiğimiz boyasız göçük düzeltme çalışmalarımızı görüntüleyin. Öncesi ve sonrası fotoğraflar, dolu hasarı, kapı vuruğu, park hasarı onarımları.",
   keywords:

@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     ],
     type: "website",
   },
+  alternates: {
+    canonical: "/hakkimizda",
+  },
 };
 
 export default function HakkimizdaPage() {

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://www.samsunboyasizgocukduzeltme.com/sitemap.xml",
+    sitemap: "https://samsunboyasizgocukduzeltme.com/sitemap.xml",
   };
 }

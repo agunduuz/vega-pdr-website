@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     "Boyasız göçük düzeltme, kaporta onarımı ve lokal boya hizmetlerimiz. 40 yıllık tecrübe ile Samsun'da.",
   keywords:
     "boyasız göçük düzeltme, kaporta, boya, samsun, pdr, vega boyasız göçük düzeltme",
+  alternates: {
+    canonical: "/hizmetler",
+  },
 };
 
 export default function HizmetlerPage() {

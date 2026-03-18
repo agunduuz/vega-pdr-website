@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const slugs = getAllServiceSlugs();
 
   const services = slugs.map((slug) => ({
-    url: `https://www.samsunboyasizgocukduzeltme.com/hizmetler/${slug}`,
+    url: `https://samsunboyasizgocukduzeltme.com/hizmetler/${slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,
@@ -14,31 +14,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: "https://www.samsunboyasizgocukduzeltme.com",
+      url: "https://samsunboyasizgocukduzeltme.com",
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 1.0,
     },
     {
-      url: "https://www.samsunboyasizgocukduzeltme.com/hizmetler",
+      url: "https://samsunboyasizgocukduzeltme.com/hizmetler",
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.9,
     },
     {
-      url: "https://www.samsunboyasizgocukduzeltme.com/galeri",
+      url: "https://samsunboyasizgocukduzeltme.com/galeri",
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
     },
     {
-      url: "https://www.samsunboyasizgocukduzeltme.com/hakkimizda",
+      url: "https://samsunboyasizgocukduzeltme.com/hakkimizda",
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.7,
     },
     {
-      url: "https://www.samsunboyasizgocukduzeltme.com/iletisim",
+      url: "https://samsunboyasizgocukduzeltme.com/iletisim",
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.6,

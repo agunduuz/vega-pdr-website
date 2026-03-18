@@ -40,6 +40,9 @@ export async function generateMetadata({
       images: [service.featuredImage],
       type: "website",
     },
+    alternates: {
+      canonical: `/hizmetler/${slug}`,
+    },
   };
 }
 

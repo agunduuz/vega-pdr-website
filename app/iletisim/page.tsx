@@ -6,6 +6,9 @@ import ContactForm from "@/components/contact/ContactForm";
 
 export const metadata: Metadata = {
   title: `İletişim | ${SITE_CONFIG.fullName}`,
+  alternates: {
+    canonical: "/iletisim",
+  },
   description:
     "Samsun'daki boyasız göçük düzeltme hizmetlerimiz için bizimle iletişime geçin. Randevu alın, fiyat teklifi isteyin. WhatsApp, telefon ve email ile 7/24 ulaşabilirsiniz.",
   keywords:
