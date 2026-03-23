@@ -12,10 +12,8 @@ export const metadata: Metadata = {
   title: `Hakkımızda | ${SITE_CONFIG.fullName}`,
   description:
     "1984'ten beri Samsun'da boyasız göçük düzeltme hizmeti veriyoruz. 40 yıllık tecrübemiz ve modern PDR teknolojisiyle aracınızın orijinalliğini koruyoruz.",
-  keywords:
-    "hakkımızda, vega pdr, samsun pdr, boyasız göçük, 40 yıl tecrübe, profesyonel ekip",
   openGraph: {
-    title: `Hakkımızda | ${SITE_CONFIG.fullName}`,
+    title: `Hakkımızda | ${SITE_CONFIG.name}`,
     description:
       "1984'ten beri Samsun'da boyasız göçük düzeltme hizmeti veriyoruz. 40 yıllık tecrübemiz ve modern PDR teknolojisiyle aracınızın orijinalliğini koruyoruz.",
     images: [

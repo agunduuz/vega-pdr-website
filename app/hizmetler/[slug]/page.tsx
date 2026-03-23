@@ -33,7 +33,6 @@ export async function generateMetadata({
   return {
     title: `${service.title} ${service.subtitle} | ${SITE_CONFIG.fullName}`,
     description: service.description,
-    keywords: `${service.title}, ${service.slug}, samsun, pdr, boyasız göçük`,
     openGraph: {
       title: `${service.title} ${service.subtitle}`,
       description: service.description,

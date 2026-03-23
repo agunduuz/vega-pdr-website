@@ -10,10 +10,8 @@ export const metadata: Metadata = {
   },
   description:
     "40 yıllık tecrübemizle gerçekleştirdiğimiz boyasız göçük düzeltme çalışmalarımızı görüntüleyin. Öncesi ve sonrası fotoğraflar, dolu hasarı, kapı vuruğu, park hasarı onarımları.",
-  keywords:
-    "galeri, önce sonra, boyasız göçük, pdr, samsun, vega pdr, dolu hasarı, park hasarı, kapı vuruğu",
   openGraph: {
-    title: `Galeri | ${SITE_CONFIG.fullName}`,
+    title: `Galeri | ${SITE_CONFIG.name}`,
     description:
       "40 yıllık tecrübemizle gerçekleştirdiğimiz boyasız göçük düzeltme çalışmalarımızı görüntüleyin.",
     images: [

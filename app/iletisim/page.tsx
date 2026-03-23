@@ -11,10 +11,8 @@ export const metadata: Metadata = {
   },
   description:
     "Samsun'daki boyasız göçük düzeltme hizmetlerimiz için bizimle iletişime geçin. Randevu alın, fiyat teklifi isteyin. WhatsApp, telefon ve email ile 7/24 ulaşabilirsiniz.",
-  keywords:
-    "iletişim, randevu, fiyat teklifi, samsun pdr, vega pdr iletişim, boyasız göçük randevu",
   openGraph: {
-    title: `İletişim | ${SITE_CONFIG.fullName}`,
+    title: `İletişim | ${SITE_CONFIG.name}`,
     description:
       "Samsun'daki boyasız göçük düzeltme hizmetlerimiz için bizimle iletişime geçin.",
     images: [

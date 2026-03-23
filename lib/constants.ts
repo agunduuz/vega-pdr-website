@@ -6,8 +6,6 @@ export const SITE_CONFIG = {
   description:
     "Samsun'da 40 yıllık tecrübesiyle boyasız göçük düzeltme (PDR) hizmeti. Dolu hasarı, kapı vuruğu, park hasarı onarımında uzman ekip. Aracınızın değerini koruyoruz.",
   phone: "+90532 267 23 37", // Babanın gerçek numarasını buraya koy
-  keywords:
-    "boyasız göçük düzeltme, pdr samsun, dolu hasarı, kapı vuruğu, park hasarı, araç onarımı samsun, vega pdr, göçük düzeltme, vega boyasız göçük düzeltme",
   email: "info@samsunboyasizgocukduzeltme.com",
   address:
     "Yenimahalle, 54. Sk. Gülsan Sanayi Sitesi No: 12, 55080 Canik/Samsun", // Gerçek adresi koy

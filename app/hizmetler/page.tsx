@@ -8,8 +8,6 @@ export const metadata: Metadata = {
   title: `Hizmetlerimiz | ${SITE_CONFIG.fullName}`,
   description:
     "Boyasız göçük düzeltme, kaporta onarımı ve lokal boya hizmetlerimiz. 40 yıllık tecrübe ile Samsun'da.",
-  keywords:
-    "boyasız göçük düzeltme, kaporta, boya, samsun, pdr, vega boyasız göçük düzeltme",
   alternates: {
     canonical: "/hizmetler",
   },

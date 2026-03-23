@@ -26,10 +26,9 @@ export const metadata: Metadata = {
   },
   title: {
     default: SITE_CONFIG.fullName,
-    template: `%s | ${SITE_CONFIG.fullName}`,
+    template: `%s | ${SITE_CONFIG.name}`,
   },
   description: SITE_CONFIG.description,
-  keywords: SITE_CONFIG.keywords,
   authors: [{ name: SITE_CONFIG.fullName }],
   creator: SITE_CONFIG.fullName,
   publisher: SITE_CONFIG.fullName,
