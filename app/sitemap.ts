@@ -1,9 +1,17 @@
 // app/sitemap.ts
 import { MetadataRoute } from "next";
-import { getAllServiceSlugs } from "@/lib/services-data";
+import { getAllServiceSlugs } from "@/lib/mdx";
+import { getAllPosts } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const slugs = getAllServiceSlugs();
+
+  const posts = getAllPosts().map((post) => ({
+    url: `https://samsunboyasizgocukduzeltme.com/blog/${post.slug}`,
+    lastModified: new Date(post.updated ?? post.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
 
   const services = slugs.map((slug) => ({
     url: `https://samsunboyasizgocukduzeltme.com/hizmetler/${slug}`,
@@ -43,6 +51,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     },
+    {
+      url: "https://samsunboyasizgocukduzeltme.com/blog",
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
     ...services,
+    ...posts,
   ];
 }

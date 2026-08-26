@@ -264,3 +264,306 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* ==========================================================================
+   BLOG — "Işık Hattı" tasarım dili
+   PDR ustası göçüğü yandan vuran ışıkla okur. Blogun imza öğesi de bu:
+   koyu lake bir zemin üzerinde yavaşça kayan kehribar bir ışık hattı.
+   Hizmet sayfalarından bilinçli olarak ayrışır: koyu hero, editoryal tipografi.
+   ========================================================================== */
+
+.blog-scope {
+  --blog-ink: #0a0d33;
+  --blog-line: rgba(255, 179, 0, 0.55);
+}
+
+.blog-scope h1,
+.blog-scope h2,
+.blog-scope h3,
+.blog-scope .font-display {
+  font-family: var(--font-manrope), "Inter", system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* İmza: kehribar ışık süpürmesi */
+.light-sweep {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.light-sweep::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -30%;
+  width: 45%;
+  height: 220%;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(255, 179, 0, 0.09) 35%,
+    rgba(255, 194, 51, 0.22) 50%,
+    rgba(255, 179, 0, 0.09) 65%,
+    transparent 100%
+  );
+  transform: rotate(12deg);
+  animation: sweep 9s ease-in-out infinite;
+}
+
+@keyframes sweep {
+  0%,
+  100% {
+    transform: translateX(-10%) rotate(12deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(190%) rotate(12deg);
+    opacity: 1;
+  }
+}
+
+/* Panel dokusu: yüzeydeki ölçüm hattı hissi */
+.blog-grid-lines {
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse at 50% 0%, black 10%, transparent 72%);
+}
+
+/* Kart üzerinde ışık hattının çizilmesi */
+.card-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover .card-line,
+.group:focus-visible .card-line {
+  transform: scaleX(1);
+}
+
+/* Blog carousel navigasyonu */
+.blog-swiper {
+  padding-bottom: 3rem;
+}
+
+.blog-swiper .swiper-slide {
+  height: auto;
+}
+
+.blog-swiper .swiper-pagination {
+  bottom: 0 !important;
+}
+
+.blog-swiper .swiper-pagination-bullet {
+  width: 22px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--color-primary-500);
+  opacity: 0.25;
+  transition: all 0.3s ease;
+}
+
+.blog-swiper .swiper-pagination-bullet-active {
+  background: var(--color-accent);
+  opacity: 1;
+  width: 40px;
+}
+
+/* Yazı gövdesi: okuma konforu için ölçek ve ritim */
+.blog-article {
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+
+.blog-article h2 {
+  scroll-margin-top: 7rem;
+}
+
+.blog-article h3 {
+  scroll-margin-top: 7rem;
+}
+
+.blog-article > div:first-child > p:first-of-type {
+  font-size: 1.1875rem;
+  line-height: 1.75;
+  color: var(--color-primary-700);
+}
+
+@media (max-width: 640px) {
+  .blog-article {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .blog-article > div:first-child > p:first-of-type {
+    font-size: 1.0625rem;
+  }
+}
+
+/* Erişilebilirlik: hareketi azaltma tercihi */
+@media (prefers-reduced-motion: reduce) {
+  .light-sweep::before {
+    animation: none;
+    opacity: 0.6;
+  }
+
+  .card-line {
+    transition: none;
+  }
+}
+
+/* Klavye odağı her yerde görünür kalsın */
+.blog-scope a:focus-visible,
+.blog-scope button:focus-visible,
+.blog-scope input:focus-visible,
+.blog-scope select:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Yazı gövdesindeki madde imleri: kehribar nokta */
+.blog-article ul {
+  list-style: none;
+}
+
+.blog-article ul > li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.blog-article ul > li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.72em;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--color-accent);
+}
+
+/* Yazı gövdesi tipografisi (HTML sunucuda derlendiği için sınıf tabanlı) */
+.blog-article h2 {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.625rem;
+  font-weight: 900;
+  line-height: 1.25;
+  color: var(--color-primary-500);
+}
+
+.blog-article h3 {
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-primary-700);
+}
+
+.blog-article p {
+  margin-bottom: 1.25rem;
+}
+
+.blog-article a {
+  font-weight: 600;
+  color: var(--color-primary-500);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: color 0.2s ease;
+}
+
+.blog-article a:hover {
+  color: var(--color-primary-700);
+  background: rgba(255, 179, 0, 0.12);
+}
+
+.blog-article ol {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+  list-style: decimal;
+}
+
+.blog-article ol > li::marker {
+  font-weight: 700;
+  color: var(--color-accent-dark);
+}
+
+.blog-article li {
+  margin-bottom: 0.65rem;
+}
+
+.blog-article li > strong:first-child {
+  color: var(--color-primary-500);
+}
+
+.blog-article strong {
+  font-weight: 700;
+  color: var(--color-primary-500);
+}
+
+.blog-article blockquote {
+  margin: 2rem 0;
+  border-left: 4px solid var(--color-accent);
+  background: #fff;
+  padding: 1rem 1.5rem;
+  font-style: italic;
+  color: var(--color-primary-700);
+}
+
+.blog-article hr {
+  margin: 2.5rem 0;
+  border-color: rgba(26, 34, 127, 0.1);
+}
+
+.blog-article table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.blog-article th,
+.blog-article td {
+  border: 1px solid rgba(26, 34, 127, 0.12);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.blog-article th {
+  background: var(--color-background-light);
+  font-weight: 700;
+  color: var(--color-primary-500);
+}
+
+/* Callout içi metin: gövdeden bir tık sıkı */
+.blog-article .callout-body p {
+  margin-bottom: 0.75rem;
+  font-size: 0.9375rem;
+}
+
+.blog-article .callout-body p:last-child {
+  margin-bottom: 0;
+}
+
+.blog-article .callout-body a {
+  font-weight: 700;
+}
+
+/* Arama alanında tarayıcının kendi temizleme düğmesi gizlenir;
+   yerine kendi erişilebilir düğmemiz kullanılır. */
+.blog-scope input[type="search"]::-webkit-search-cancel-button,
+.blog-scope input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
