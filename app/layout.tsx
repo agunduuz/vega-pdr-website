@@ -1,11 +1,11 @@
 // app/layout.tsx
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import WhatsAppButton from "@/components/shared/WhatsAppButton";
+import { SITE_CONFIG, OPENING_HOURS_SCHEMA } from "@/lib/constants";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import { SITE_CONFIG } from "@/lib/constants";
-import WhatsAppButton from "@/components/shared/WhatsAppButton";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -84,8 +84,8 @@ export default function RootLayout({
     email: SITE_CONFIG.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Yenimahalle, 54. Sk. Gülsan Sanayi Sitesi No: 12",
-      addressLocality: "Canik",
+      streetAddress: "Çobanözü Mahallesi 9019. Cadde, Toybelen, Küçük Sanayi Sitesi Blok No: 4 D:10",
+      addressLocality: "Atakum",
       addressRegion: "Samsun",
       postalCode: "55080",
       addressCountry: "TR",
@@ -95,21 +95,7 @@ export default function RootLayout({
       latitude: "41.2722623",
       longitude: "36.3640689",
     },
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-        ],
-        opens: "08:30",
-        closes: "19:00",
-      },
-    ],
+    openingHoursSpecification: OPENING_HOURS_SCHEMA,
     priceRange: "₺₺",
     image: "https://samsunboyasizgocukduzeltme.com/images/og-image.jpg",
     logo: "https://samsunboyasizgocukduzeltme.com/vega-logo.svg",

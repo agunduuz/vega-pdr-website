@@ -8,16 +8,52 @@ export const SITE_CONFIG = {
   phone: "+90532 267 23 37", // Babanın gerçek numarasını buraya koy
   email: "info@samsunboyasizgocukduzeltme.com",
   address:
-    "Yenimahalle, 54. Sk. Gülsan Sanayi Sitesi No: 12, 55080 Canik/Samsun", // Gerçek adresi koy
+    "Çobanözü Mahallesi 9019. Cadde, Toybelen, Küçük Sanayi Sitesi Blok No: 4 D:10, Atakum/Samsun", // Gerçek adresi koy
   googleMapsLink:
     "https://www.google.com/maps/place/Vega+Boyas%C4%B1z+G%C3%B6%C3%A7%C3%BCk+D%C3%BCzeltme/@41.2722622,36.359198,17z/data=!3m1!4b1!4m6!3m5!1s0x4088778e3177bb79:0x8cac9494a70a9f7c!8m2!3d41.2722623!4d36.3640689!16s%2Fg%2F11vr1s48vm?entry=ttu&g_ep=EgoyMDI2MDEwNy4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D",
-  workingHours: "Pzt-Cmt: 08:30 - 19:00",
+  workingHours: "Pzt-Cmt: 09:00 - 18:00",
   workingHoursFull: "Pazar: Kapalı",
   whatsappMessage: "Merhaba, aracımın hasarı için bilgi almak istiyorum.",
   social: {
     instagram: "https://instagram.com/vegagocukduzeltme",
   },
 };
+
+// Çalışma saatleri - Google İşletme Profili ile birebir uyumlu
+// (Google Business Profile: Pazar Kapalı, Pzt-Cmt 09:00-18:00)
+export const OPENING_HOURS = [
+  { day: "Pazar", dayOfWeek: "Sunday", opens: null, closes: null },
+  { day: "Pazartesi", dayOfWeek: "Monday", opens: "09:00", closes: "18:00" },
+  { day: "Salı", dayOfWeek: "Tuesday", opens: "09:00", closes: "18:00" },
+  { day: "Çarşamba", dayOfWeek: "Wednesday", opens: "09:00", closes: "18:00" },
+  { day: "Perşembe", dayOfWeek: "Thursday", opens: "09:00", closes: "18:00" },
+  { day: "Cuma", dayOfWeek: "Friday", opens: "09:00", closes: "18:00" },
+  { day: "Cumartesi", dayOfWeek: "Saturday", opens: "09:00", closes: "18:00" },
+] as const;
+
+// Schema.org openingHoursSpecification (Google yapısal veri formatı)
+// Kapalı günler Google'ın önerdiği şekilde opens/closes "00:00" ile belirtilir.
+export const OPENING_HOURS_SCHEMA = [
+  {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ],
+    opens: "09:00",
+    closes: "18:00",
+  },
+  {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: "Sunday",
+    opens: "00:00",
+    closes: "00:00",
+  },
+];
 
 export const SERVICES = [
   {
@@ -92,6 +128,7 @@ export const NAV_LINKS = [
   { href: "/", label: "Ana Sayfa" },
   { href: "/hizmetler", label: "Hizmetler" },
   { href: "/galeri", label: "Galeri" },
+  { href: "/blog", label: "Blog" },
   { href: "/hakkimizda", label: "Hakkımızda" },
   { href: "/iletisim", label: "İletişim" },
 ];

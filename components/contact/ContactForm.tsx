@@ -228,7 +228,9 @@ ${sanitizedData.message}
                       <p className="text-sm sm:text-base font-semibold text-primary-500">
                         {SITE_CONFIG.workingHours}
                       </p>
-                      <p className="text-sm text-slate-custom">Pazar: Kapalı</p>
+                      <p className="text-sm text-slate-custom">
+                        {SITE_CONFIG.workingHoursFull}
+                      </p>
                     </div>
                   </div>
                 </div>
