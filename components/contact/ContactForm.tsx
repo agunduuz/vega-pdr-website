@@ -167,17 +167,24 @@ ${sanitizedData.message}
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 mb-20 relative z-20">
-      <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+      <div className="overflow-hidden rounded-3xl border border-primary-500/10 bg-white shadow-xl shadow-primary-500/5">
         <div className="grid lg:grid-cols-5 min-h-[600px]">
           {/* Sol Kolon: İletişim Bilgileri & Harita */}
           <div className="lg:col-span-2 bg-background-light border-r border-gray-100 flex flex-col">
             {/* İletişim Detayları */}
             <div className="p-6 sm:p-8 lg:p-10 flex flex-col gap-6 sm:gap-8">
               <div>
-                <h3 className="text-primary-500 text-xl font-bold mb-6 flex items-center gap-2">
-                  <Phone className="w-5 h-5" />
-                  İletişim Bilgileri
-                </h3>
+                <div className="mb-6">
+                  <div className="flex items-center gap-3">
+                    <span className="h-px w-8 bg-accent" />
+                    <span className="text-xs font-bold uppercase tracking-[0.24em] text-accent">
+                      Atölye
+                    </span>
+                  </div>
+                  <h3 className="mt-3 text-xl font-black text-primary-500">
+                    İletişim bilgileri
+                  </h3>
+                </div>
                 <div className="space-y-6">
                   {/* Telefon */}
                   <Link
@@ -286,10 +293,10 @@ ${sanitizedData.message}
                         value={formData.name}
                         onChange={handleChange}
                         maxLength={50}
-                        className={`w-full bg-background-light border rounded-lg px-4 py-3 sm:py-3.5 pl-11 text-primary-500 placeholder-gray-400 focus:outline-none transition-all ${
+                        className={`w-full rounded-xl border bg-background-light px-4 py-3.5 pl-11 text-primary-500 placeholder-gray-400 transition-all focus:outline-none ${
                           errors.name
                             ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                            : "border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent"
+                            : "border-primary-500/15 focus:border-accent focus:ring-2 focus:ring-accent/25"
                         }`}
                         placeholder="Ad Soyad"
                         required
@@ -322,10 +329,10 @@ ${sanitizedData.message}
                         value={formData.phone}
                         onChange={handleChange}
                         maxLength={13}
-                        className={`w-full bg-background-light border rounded-lg px-4 py-3 sm:py-3.5 pl-11 text-primary-500 placeholder-gray-400 focus:outline-none transition-all ${
+                        className={`w-full rounded-xl border bg-background-light px-4 py-3.5 pl-11 text-primary-500 placeholder-gray-400 transition-all focus:outline-none ${
                           errors.phone
                             ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                            : "border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent"
+                            : "border-primary-500/15 focus:border-accent focus:ring-2 focus:ring-accent/25"
                         }`}
                         placeholder="05XX XXX XX XX"
                         required
@@ -356,10 +363,10 @@ ${sanitizedData.message}
                       value={formData.carModel}
                       onChange={handleChange}
                       maxLength={50}
-                      className={`w-full bg-background-light border rounded-lg px-4 py-3 sm:py-3.5 pl-11 text-primary-500 placeholder-gray-400 focus:outline-none transition-all ${
+                      className={`w-full rounded-xl border bg-background-light px-4 py-3.5 pl-11 text-primary-500 placeholder-gray-400 transition-all focus:outline-none ${
                         errors.carModel
                           ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                          : "border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent"
+                          : "border-primary-500/15 focus:border-accent focus:ring-2 focus:ring-accent/25"
                       }`}
                       placeholder="Örn: 2022 BMW 320i"
                       required
@@ -392,10 +399,10 @@ ${sanitizedData.message}
                       value={formData.message}
                       onChange={handleChange}
                       maxLength={500}
-                      className={`w-full bg-background-light border rounded-lg px-4 py-3 sm:py-3.5 text-primary-500 placeholder-gray-400 focus:outline-none transition-all resize-none ${
+                      className={`w-full rounded-xl border bg-background-light px-4 py-3.5 text-primary-500 placeholder-gray-400 transition-all focus:outline-none resize-none ${
                         errors.message
                           ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                          : "border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent"
+                          : "border-primary-500/15 focus:border-accent focus:ring-2 focus:ring-accent/25"
                       }`}
                       placeholder="Hasarın nerede olduğunu ve nasıl oluştuğunu kısaca anlatın..."
                       rows={4}
@@ -420,16 +427,20 @@ ${sanitizedData.message}
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full md:w-auto min-w-[200px] bg-accent hover:bg-accent-dark text-primary-500 font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none"
+                    className="flex w-full items-center justify-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-black text-primary-500 shadow-lg shadow-accent/20 transition-all hover:scale-[1.01] hover:bg-accent-light active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:min-w-[260px] sm:text-base"
                   >
-                    <span>WhatsApp&apos;a Gönder</span>
-                    <Send className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span>Fotoğrafı WhatsApp&apos;tan gönder</span>
+                    <Send className="h-4 w-4 sm:h-5 sm:w-5" />
                   </button>
+                  <p className="mt-3 text-xs text-slate-custom">
+                    Form, mesajınızı WhatsApp&apos;ta açar; göndermeden önce
+                    hasarın fotoğrafını da ekleyebilirsiniz.
+                  </p>
                 </div>
 
                 {/* Başarı Mesajı */}
                 {isSubmitted && (
-                  <div className="bg-green-50 text-green-800 p-4 rounded-lg flex items-center gap-3 border border-green-200">
+                  <div className="flex items-center gap-3 rounded-xl border border-green-200 bg-green-50 p-4 text-green-800">
                     <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
                       <span className="text-white text-xs">✓</span>
                     </div>

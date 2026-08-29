@@ -6,53 +6,39 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Menu, X, Phone } from "lucide-react";
+import { Camera, Menu, Phone, X } from "lucide-react";
 import { SITE_CONFIG, NAV_LINKS } from "@/lib/constants";
+
+const PHONE_DIGITS = SITE_CONFIG.phone.replace(/[^\d]/g, "");
 
 const Header = memo(function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const reduceMotion = useReducedMotion() ?? false;
 
-  // Reduced motion
-  const shouldReduceMotionRaw = useReducedMotion();
-  const shouldReduceMotion = shouldReduceMotionRaw ?? false;
+  const whatsappLink = `https://wa.me/${PHONE_DIGITS}?text=${encodeURIComponent(
+    SITE_CONFIG.whatsappMessage,
+  )}`;
 
-  const isGalleryPage = pathname === "/galeri";
+  /** Sayfalar koyu hero ile açılıyor: üstteyken başlık şeffaf, kaydırınca beyaz. */
+  const isTransparent = !isScrolled;
 
-  // WhatsApp link
-  const whatsappLink = `https://wa.me/${SITE_CONFIG.phone.replace(
-    /\s/g,
-    "",
-  )}?text=${encodeURIComponent(SITE_CONFIG.whatsappMessage)}`;
-
-  // Check if link is active
   const isActiveLink = useCallback(
     (href: string) => {
       if (href === "/") return pathname === "/";
-      if (href.startsWith("#")) {
-        return (
-          pathname === "/" &&
-          typeof window !== "undefined" &&
-          window.location.hash === href
-        );
-      }
-      return pathname === href;
+      return pathname === href || pathname.startsWith(`${href}/`);
     },
     [pathname],
   );
 
-  // Scroll handler
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
@@ -65,177 +51,147 @@ const Header = memo(function Header() {
       }
     };
 
-    if (isMobileMenuOpen) {
-      document.addEventListener("click", handleClickOutside);
-    }
-
+    if (isMobileMenuOpen) document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, [isMobileMenuOpen]);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [isMobileMenuOpen]);
 
-  // Toggle mobile menu
-  const toggleMobileMenu = useCallback(() => {
-    setIsMobileMenuOpen((prev) => !prev);
-  }, []);
-
-  // Close mobile menu
-  const closeMobileMenu = useCallback(() => {
-    setIsMobileMenuOpen(false);
-  }, []);
+  const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isGalleryPage
-            ? "bg-primary-700 shadow-lg py-3"
-            : isScrolled
-              ? "bg-white shadow-lg py-2"
-              : "bg-white/95 backdrop-blur-md py-3"
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+          isTransparent
+            ? "bg-transparent py-4"
+            : "border-b border-primary-500/10 bg-white/95 py-2.5 shadow-sm backdrop-blur-md"
         }`}
         role="banner"
       >
-        <div className="layout-container flex justify-center">
-          <div className="flex w-full max-w-7xl items-center justify-between px-4 md:px-10">
-            {/* Logo - Fixed */}
-            <Link
-              href="/"
-              className="flex items-center group"
-              aria-label="Vega Boyasız Göçük Düzeltme Ana Sayfa"
-            >
-              <div className="relative h-10 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                <Image
-                  src="/vega-logo.svg"
-                  alt="Vega Logo"
-                  width={80}
-                  height={40}
-                  className={`h-10 w-auto ${
-                    isGalleryPage ? "brightness-0 invert" : ""
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 md:px-10">
+          <Link
+            href="/"
+            className="flex items-center"
+            aria-label="Vega Boyasız Göçük Düzeltme ana sayfa"
+          >
+            <Image
+              src="/vega-logo.svg"
+              alt="Vega Logo"
+              width={80}
+              height={40}
+              className={`h-10 w-auto transition-transform duration-300 hover:scale-105 ${
+                isTransparent ? "brightness-0 invert" : ""
+              }`}
+              priority
+            />
+          </Link>
+
+          {/* Masaüstü navigasyon */}
+          <nav
+            className="hidden items-center gap-8 md:flex"
+            aria-label="Ana navigasyon"
+          >
+            {NAV_LINKS.map((link) => {
+              const isActive = isActiveLink(link.href);
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`group relative text-sm font-semibold transition-colors ${
+                    isActive
+                      ? "text-accent"
+                      : isTransparent
+                        ? "text-white/80 hover:text-white"
+                        : "text-slate-custom hover:text-primary-500"
                   }`}
-                  priority
-                />
-              </div>
-            </Link>
+                >
+                  {link.label}
 
-            {/* Desktop Navigation */}
-            <nav
-              className="hidden md:flex items-center gap-8"
-              aria-label="Ana navigasyon"
-            >
-              {NAV_LINKS.map((link) => {
-                const isActive = isActiveLink(link.href);
+                  {isActive ? (
+                    <motion.span
+                      layoutId="activeTab"
+                      className="absolute -bottom-1.5 left-0 right-0 h-0.5 rounded-full bg-accent"
+                      initial={false}
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  ) : (
+                    <span
+                      className={`absolute -bottom-1.5 left-0 h-0.5 w-0 rounded-full transition-all duration-300 group-hover:w-full ${
+                        isTransparent ? "bg-white/60" : "bg-primary-500"
+                      }`}
+                    />
+                  )}
+                </Link>
+              );
+            })}
+          </nav>
 
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`relative text-sm font-medium transition-colors group ${
-                      isActive
-                        ? "text-accent font-bold"
-                        : isGalleryPage
-                          ? "text-white hover:text-accent"
-                          : "text-slate-custom hover:text-primary-500"
-                    }`}
-                  >
-                    {link.label}
-
-                    {/* Active indicator */}
-                    {isActive && (
-                      <motion.span
-                        layoutId="activeTab"
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent rounded-full"
-                        initial={false}
-                        transition={{
-                          type: "spring",
-                          stiffness: 380,
-                          damping: 30,
-                        }}
-                      />
-                    )}
-
-                    {/* Hover underline */}
-                    {!isActive && (
-                      <span
-                        className={`absolute -bottom-1 left-0 w-0 h-0.5 rounded-full transition-all duration-300 group-hover:w-full ${
-                          isGalleryPage ? "bg-white" : "bg-primary-700"
-                        }`}
-                      ></span>
-                    )}
-                  </Link>
-                );
-              })}
-            </nav>
-
-            {/* Desktop CTA Button */}
+          {/* Eylemler */}
+          <div className="flex items-center gap-2">
             <Link
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex items-center justify-center gap-2 rounded-full h-10 px-5 bg-accent hover:bg-accent/90 text-primary-500 transition-all duration-300 text-sm font-bold shadow-md hover:shadow-lg hover:scale-105"
-              aria-label="WhatsApp ile fiyat teklifi al"
+              className="hidden h-11 items-center justify-center gap-2 rounded-full bg-accent px-5 text-sm font-black text-primary-500 shadow-md shadow-accent/20 transition-all hover:scale-105 hover:bg-accent-light md:flex"
+              aria-label="WhatsApp ile fiyat teklifi alın"
             >
-              <Phone className="w-4 h-4" strokeWidth={2.5} />
-              <span className="whitespace-nowrap">WhatsApp ile Fiyat Al</span>
+              <Camera className="h-4 w-4" strokeWidth={2.5} />
+              <span className="whitespace-nowrap">Fotoğraf gönder</span>
             </Link>
 
-            {/* Mobile Menu Button */}
+            {/* Mobilde tek dokunuşla arama */}
+            <a
+              href={`tel:${PHONE_DIGITS}`}
+              aria-label="Hemen ara"
+              className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors md:hidden ${
+                isTransparent
+                  ? "bg-white/10 text-white"
+                  : "bg-background-light text-primary-500"
+              }`}
+            >
+              <Phone className="h-5 w-5" strokeWidth={2.5} />
+            </a>
+
             <button
               id="menu-button"
-              onClick={toggleMobileMenu}
-              className={`md:hidden p-2 rounded-lg transition-colors ${
-                isGalleryPage ? "hover:bg-white/10" : "hover:bg-gray-100"
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors md:hidden ${
+                isTransparent
+                  ? "bg-white/10 text-white"
+                  : "bg-background-light text-primary-500"
               }`}
               aria-label={isMobileMenuOpen ? "Menüyü kapat" : "Menüyü aç"}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
             >
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait" initial={false}>
                 {isMobileMenuOpen ? (
-                  <motion.div
+                  <motion.span
                     key="close"
-                    initial={
-                      shouldReduceMotion ? {} : { rotate: -90, opacity: 0 }
-                    }
+                    initial={reduceMotion ? {} : { rotate: -90, opacity: 0 }}
                     animate={{ rotate: 0, opacity: 1 }}
-                    exit={shouldReduceMotion ? {} : { rotate: 90, opacity: 0 }}
+                    exit={reduceMotion ? {} : { rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <X
-                      className={`w-6 h-6 ${
-                        isGalleryPage ? "text-white" : "text-primary-500"
-                      }`}
-                      strokeWidth={2.5}
-                    />
-                  </motion.div>
+                    <X className="h-5 w-5" strokeWidth={2.5} />
+                  </motion.span>
                 ) : (
-                  <motion.div
+                  <motion.span
                     key="menu"
-                    initial={
-                      shouldReduceMotion ? {} : { rotate: 90, opacity: 0 }
-                    }
+                    initial={reduceMotion ? {} : { rotate: 90, opacity: 0 }}
                     animate={{ rotate: 0, opacity: 1 }}
-                    exit={shouldReduceMotion ? {} : { rotate: -90, opacity: 0 }}
+                    exit={reduceMotion ? {} : { rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Menu
-                      className={`w-6 h-6 ${
-                        isGalleryPage ? "text-white" : "text-slate-custom"
-                      }`}
-                      strokeWidth={2.5}
-                    />
-                  </motion.div>
+                    <Menu className="h-5 w-5" strokeWidth={2.5} />
+                  </motion.span>
                 )}
               </AnimatePresence>
             </button>
@@ -243,117 +199,104 @@ const Header = memo(function Header() {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobil menü */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 z-40 bg-primary-900/60 backdrop-blur-sm md:hidden"
               onClick={closeMobileMenu}
               aria-hidden="true"
             />
 
-            {/* Mobile Menu */}
             <motion.nav
               id="mobile-menu"
-              initial={shouldReduceMotion ? {} : { x: "100%" }}
-              animate={{ x: 0 }}
-              exit={shouldReduceMotion ? {} : { x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-70 bg-white shadow-2xl z-50 md:hidden overflow-y-auto"
-              aria-label="Mobil navigasyon menüsü"
+              initial={reduceMotion ? { opacity: 0 } : { x: "100%" }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={reduceMotion ? { opacity: 0 } : { x: "100%" }}
+              transition={{ type: "spring", damping: 26, stiffness: 220 }}
+              className="fixed inset-y-0 right-0 z-50 flex w-[82%] max-w-xs flex-col overflow-y-auto bg-primary-800 shadow-2xl md:hidden"
+              aria-label="Mobil navigasyon"
             >
-              <div className="flex flex-col h-full">
-                {/* Mobile Menu Header */}
-                <div className="flex items-center justify-between p-6 pb-0">
-                  <div className="relative h-10 flex items-center justify-center">
-                    <Image
-                      src="/vega-logo.svg"
-                      alt="Vega Logo"
-                      width={78}
-                      height={40}
-                      className="h-10 w-auto"
-                    />
-                  </div>
-                  <button
-                    onClick={closeMobileMenu}
-                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-                    aria-label="Menüyü kapat"
-                  >
-                    <X
-                      className="w-5 h-5 text-slate-custom"
-                      strokeWidth={2.5}
-                    />
-                  </button>
-                </div>
+              <div className="blog-grid-lines absolute inset-0" aria-hidden="true" />
 
-                {/* Mobile Menu Links */}
-                <div className="flex flex-col gap-1 p-4 flex-1">
-                  {NAV_LINKS.map((link, index) => {
-                    const isActive = isActiveLink(link.href);
+              <div className="relative flex items-center justify-between p-6">
+                <Image
+                  src="/vega-logo.svg"
+                  alt="Vega Logo"
+                  width={78}
+                  height={40}
+                  className="h-9 w-auto brightness-0 invert"
+                />
+                <button
+                  onClick={closeMobileMenu}
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white"
+                  aria-label="Menüyü kapat"
+                >
+                  <X className="h-5 w-5" strokeWidth={2.5} />
+                </button>
+              </div>
 
-                    return (
-                      <motion.div
-                        key={link.href}
-                        initial={
-                          shouldReduceMotion ? {} : { opacity: 0, x: 20 }
-                        }
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{
-                          delay: shouldReduceMotion ? 0 : index * 0.1,
-                          duration: 0.3,
-                        }}
-                      >
-                        <Link
-                          href={link.href}
-                          onClick={closeMobileMenu}
-                          className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all ${
-                            isActive
-                              ? "bg-accent/10 text-accent font-bold"
-                              : "text-slate-custom hover:bg-primary-700/5 hover:text-primary-500"
-                          }`}
-                        >
-                          {isActive && (
-                            <span className="w-1 h-6 bg-accent rounded-full"></span>
-                          )}
-                          {link.label}
-                        </Link>
-                      </motion.div>
-                    );
-                  })}
-                </div>
+              <div className="relative flex flex-1 flex-col gap-1 px-4">
+                {NAV_LINKS.map((link, index) => {
+                  const isActive = isActiveLink(link.href);
 
-                {/* Mobile Menu CTA */}
-                <div className="p-6 border-t border-gray-100">
-                  <Link
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={closeMobileMenu}
-                    className="flex items-center justify-center gap-2 w-full rounded-lg h-12 bg-accent hover:bg-accent/90 text-primary-500 transition-all duration-300 font-bold shadow-md hover:shadow-lg"
-                  >
-                    <Phone className="w-5 h-5" strokeWidth={2.5} />
-                    <span>WhatsApp ile Fiyat Al</span>
-                  </Link>
-
-                  {/* Contact Info */}
-                  <div className="mt-4 pt-4 border-t border-gray-100">
-                    <p className="text-xs text-gray-500 text-center mb-2">
-                      Hemen Ara
-                    </p>
-                    <Link
-                      href={`tel:${SITE_CONFIG.phone.replace(/\s/g, "")}`}
-                      className="text-primary-500 font-bold text-lg text-center block hover:text-primary-600 transition-colors"
+                  return (
+                    <motion.div
+                      key={link.href}
+                      initial={reduceMotion ? {} : { opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{
+                        delay: reduceMotion ? 0 : index * 0.06,
+                        duration: 0.3,
+                      }}
                     >
-                      {SITE_CONFIG.phone}
-                    </Link>
-                  </div>
-                </div>
+                      <Link
+                        href={link.href}
+                        onClick={closeMobileMenu}
+                        className={`flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-bold transition-all ${
+                          isActive
+                            ? "bg-white/10 text-accent"
+                            : "text-white/70 hover:bg-white/5 hover:text-white"
+                        }`}
+                      >
+                        {isActive && (
+                          <span className="h-5 w-1 rounded-full bg-accent" />
+                        )}
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              <div className="relative border-t border-white/10 p-6">
+                <Link
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={closeMobileMenu}
+                  className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-accent text-sm font-black text-primary-500"
+                >
+                  <Camera className="h-5 w-5" strokeWidth={2.5} />
+                  Fotoğraf gönder, fiyat al
+                </Link>
+
+                <a
+                  href={`tel:${PHONE_DIGITS}`}
+                  className="mt-3 flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/15 text-sm font-bold text-white"
+                >
+                  <Phone className="h-4 w-4" strokeWidth={2.5} />
+                  {SITE_CONFIG.phone}
+                </a>
+
+                <p className="mt-4 text-center text-xs text-white/40">
+                  {SITE_CONFIG.workingHours}
+                </p>
               </div>
             </motion.nav>
           </>

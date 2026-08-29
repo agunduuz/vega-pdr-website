@@ -9,7 +9,7 @@ import KeyTakeaways from "@/components/blog/KeyTakeaways";
 import TableOfContents from "@/components/blog/TableOfContents";
 import PostNav from "@/components/blog/PostNav";
 import RelatedPosts from "@/components/blog/RelatedPosts";
-import BlogCta from "@/components/blog/BlogCta";
+import CtaBand from "@/components/shared/CtaBand";
 import {
   getAdjacentPosts,
   getAllPostSlugs,
@@ -169,7 +169,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </div>
 
       <RelatedPosts posts={related} />
-      <BlogCta />
+      <CtaBand
+        eyebrow="Ücretsiz ekspertiz"
+        title="Okumak iyidir; aracınızı görmek daha iyi."
+        whatsappMessage="Merhaba, blogdaki yazınızı okudum. Aracımdaki hasar için bilgi almak istiyorum."
+      />
     </>
   );
 }

@@ -26,7 +26,7 @@
   --color-background-dark: #121320;
 
   /* Font Family */
-  --font-family-display: "Inter", system-ui, sans-serif;
+  --font-family-display: var(--font-manrope), "Inter", system-ui, sans-serif;
   --font-family-sans: "Inter", system-ui, sans-serif;
 }
 
@@ -47,6 +47,7 @@
   h5,
   h6 {
     font-family: var(--font-family-display);
+    letter-spacing: -0.02em;
   }
 }
 
@@ -266,10 +267,10 @@
 }
 
 /* ==========================================================================
-   BLOG — "Işık Hattı" tasarım dili
-   PDR ustası göçüğü yandan vuran ışıkla okur. Blogun imza öğesi de bu:
-   koyu lake bir zemin üzerinde yavaşça kayan kehribar bir ışık hattı.
-   Hizmet sayfalarından bilinçli olarak ayrışır: koyu hero, editoryal tipografi.
+   "IŞIK HATTI" — site geneli tasarım dili
+   PDR ustası göçüğü yandan vuran ışıkla okur. Sitenin imza öğesi de bu:
+   koyu lake zemin üzerinde yavaşça kayan kehribar bir ışık hattı, panelin
+   ölçüm dokusu ve kartların altında hover'da çizilen ince kehribar çizgi.
    ========================================================================== */
 
 .blog-scope {
@@ -277,11 +278,8 @@
   --blog-line: rgba(255, 179, 0, 0.55);
 }
 
-.blog-scope h1,
-.blog-scope h2,
-.blog-scope h3,
-.blog-scope .font-display {
-  font-family: var(--font-manrope), "Inter", system-ui, sans-serif;
+.font-display {
+  font-family: var(--font-family-display);
   letter-spacing: -0.02em;
 }
 
@@ -420,10 +418,12 @@
 }
 
 /* Klavye odağı her yerde görünür kalsın */
-.blog-scope a:focus-visible,
-.blog-scope button:focus-visible,
-.blog-scope input:focus-visible,
-.blog-scope select:focus-visible {
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 6px;
@@ -562,8 +562,48 @@
 
 /* Arama alanında tarayıcının kendi temizleme düğmesi gizlenir;
    yerine kendi erişilebilir düğmemiz kullanılır. */
-.blog-scope input[type="search"]::-webkit-search-cancel-button,
-.blog-scope input[type="search"]::-webkit-search-decoration {
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
   appearance: none;
+}
+
+/* ==========================================================================
+   Giriş animasyonları — CSS tabanlı.
+   Ekranın üst kısmındaki içerik JavaScript'e bağlı kalmadan görünür olmalı;
+   bu yüzden hero bölümleri motion yerine bu sınıfları kullanır.
+   ========================================================================== */
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal {
+  animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-1 { animation-delay: 0.06s; }
+.reveal-2 { animation-delay: 0.12s; }
+.reveal-3 { animation-delay: 0.18s; }
+.reveal-4 { animation-delay: 0.24s; }
+.reveal-5 { animation-delay: 0.3s; }
+.reveal-6 { animation-delay: 0.38s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-1,
+  .reveal-2,
+  .reveal-3,
+  .reveal-4,
+  .reveal-5,
+  .reveal-6 {
+    animation: none;
+  }
 }

@@ -18,7 +18,7 @@ export default function PostHero({ post }: PostHeroProps) {
 
         <div className="relative mx-auto max-w-4xl px-4 md:px-10">
           {/* Kırıntı navigasyonu */}
-          <nav aria-label="Sayfa yolu">
+          <nav className="reveal" aria-label="Sayfa yolu">
             <ol className="flex flex-wrap items-center gap-1.5 text-xs font-medium text-white/50">
               <li>
                 <Link href="/" className="transition-colors hover:text-accent">
@@ -38,19 +38,19 @@ export default function PostHero({ post }: PostHeroProps) {
             </ol>
           </nav>
 
-          <span className="mt-6 inline-block rounded-full bg-accent px-3.5 py-1.5 text-[11px] font-black uppercase tracking-wider text-primary-500">
+          <span className="reveal reveal-1 mt-6 inline-block rounded-full bg-accent px-3.5 py-1.5 text-[11px] font-black uppercase tracking-wider text-primary-500">
             {post.category}
           </span>
 
-          <h1 className="mt-5 text-3xl font-black leading-[1.12] text-white text-balance sm:text-4xl lg:text-5xl">
+          <h1 className="reveal reveal-2 mt-5 text-3xl font-black leading-[1.12] text-white text-balance sm:text-4xl lg:text-5xl">
             {post.title}
           </h1>
 
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
+          <p className="reveal reveal-3 mt-5 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
             {post.excerpt}
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-white/60">
+          <div className="reveal reveal-4 mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-white/60">
             <span className="flex items-center gap-2">
               <PenLine className="h-4 w-4 text-accent" strokeWidth={2.5} />
               {post.author}

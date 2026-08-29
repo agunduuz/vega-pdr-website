@@ -7,6 +7,7 @@ import ServiceDetailLayout from "@/components/services/detail/ServiceDetailLayou
 import ServiceDetailArticle from "@/components/services/detail/ServiceDetailArticle"; // ✅ GERİ GETİR
 import ServiceDetailSidebar from "@/components/services/detail/ServiceDetailSidebar";
 import { getServiceBySlug, getAllServiceSlugs } from "@/lib/mdx";
+import CtaBand from "@/components/shared/CtaBand";
 import { SITE_CONFIG } from "@/lib/constants";
 
 interface ServicePageProps {
@@ -86,6 +87,11 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           mdxSource={mdxSource}
         />
       </ServiceDetailLayout>
+
+      <CtaBand
+        title={`${service.title} için aracınızı görelim.`}
+        whatsappMessage={`Merhaba, ${service.title} hizmeti için aracımın fotoğrafını gönderiyorum.`}
+      />
     </>
   );
 }

@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import ServicesHero from "@/components/services/ServiceHero";
 import ServicesList from "@/components/services/ServicesList";
 import { SITE_CONFIG } from "@/lib/constants";
-import ServicesCTA from "@/components/services/ServicesCTA";
+import CtaBand from "@/components/shared/CtaBand";
 
 export const metadata: Metadata = {
   title: `Hizmetlerimiz | ${SITE_CONFIG.fullName}`,
@@ -18,7 +18,10 @@ export default function HizmetlerPage() {
     <>
       <ServicesHero />
       <ServicesList />
-      <ServicesCTA />
+      <CtaBand
+        title="Hangi yöntemin uygun olduğunu birlikte belirleyelim."
+        whatsappMessage="Merhaba, aracımdaki hasar için hangi hizmetin uygun olduğunu öğrenmek istiyorum."
+      />
     </>
   );
 }

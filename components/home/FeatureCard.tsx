@@ -21,11 +21,10 @@ const FeatureCard = memo(function FeatureCard({
   index,
   shouldReduceMotion,
 }: FeatureCardProps) {
-  // Animation variant
   const fadeInUp = shouldReduceMotion
     ? { initial: { opacity: 1 }, animate: { opacity: 1 } }
     : {
-        initial: { opacity: 0, y: 30 },
+        initial: { opacity: 0, y: 24 },
         animate: { opacity: 1, y: 0 },
       };
 
@@ -33,31 +32,33 @@ const FeatureCard = memo(function FeatureCard({
     <motion.article
       {...fadeInUp}
       whileInView="animate"
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-60px" }}
       transition={{
         duration: shouldReduceMotion ? 0 : 0.5,
-        delay: shouldReduceMotion ? 0 : index * 0.1,
+        delay: shouldReduceMotion ? 0 : index * 0.08,
       }}
-      className="flex flex-col items-center text-center gap-3 p-4 group cursor-pointer will-change-transform"
+      className="group relative overflow-hidden rounded-2xl border border-primary-500/10 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary-500/20 hover:shadow-xl hover:shadow-primary-500/10"
       aria-labelledby={`feature-${id}`}
     >
-      <motion.div
-        whileHover={shouldReduceMotion ? {} : { scale: 1.1, rotate: 5 }}
-        transition={{ type: "spring", stiffness: 300 }}
-        className="flex items-center justify-center w-16 h-16 rounded-full bg-primary-500/5 text-primary-500 group-hover:bg-primary-500 group-hover:text-white transition-all duration-300 shadow-lg"
+      <span
+        className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-500 text-accent transition-colors group-hover:bg-accent group-hover:text-primary-500"
         aria-hidden="true"
       >
-        <Icon className="w-8 h-8" strokeWidth={2} />
-      </motion.div>
+        <Icon className="h-6 w-6" strokeWidth={2.2} />
+      </span>
 
       <h3
         id={`feature-${id}`}
-        className="text-primary-500 text-xl font-bold group-hover:text-primary-600 transition-colors"
+        className="mt-5 text-lg font-black text-primary-500"
       >
         {title}
       </h3>
 
-      <p className="text-slate-custom leading-relaxed">{description}</p>
+      <p className="mt-2 text-sm leading-relaxed text-slate-custom">
+        {description}
+      </p>
+
+      <span className="card-line absolute bottom-0 left-0 h-[3px] w-full bg-accent" />
     </motion.article>
   );
 });

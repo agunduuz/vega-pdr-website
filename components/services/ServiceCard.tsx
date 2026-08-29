@@ -4,7 +4,7 @@ import { memo } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, LucideIcon } from "lucide-react";
+import { ArrowUpRight, LucideIcon } from "lucide-react";
 
 interface ServiceCardProps {
   id: string;
@@ -29,7 +29,7 @@ const ServiceCard = memo(function ServiceCard({
   const fadeInUp = shouldReduceMotion
     ? { initial: { opacity: 1 }, animate: { opacity: 1 } }
     : {
-        initial: { opacity: 0, y: 20 },
+        initial: { opacity: 0, y: 24 },
         animate: { opacity: 1, y: 0 },
       };
 
@@ -37,64 +37,56 @@ const ServiceCard = memo(function ServiceCard({
     <motion.div
       {...fadeInUp}
       whileInView="animate"
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: "-60px" }}
       transition={{
         duration: shouldReduceMotion ? 0 : 0.5,
-        delay: shouldReduceMotion ? 0 : index * 0.1,
+        delay: shouldReduceMotion ? 0 : index * 0.08,
       }}
+      className="h-full"
     >
       <Link
         href={`/hizmetler/${slug}`}
-        className="group flex flex-col overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl border border-gray-100 h-full"
+        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-primary-500/10 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary-500/20 hover:shadow-xl hover:shadow-primary-500/10"
         aria-label={`${title} hizmetimiz hakkında detaylı bilgi`}
       >
-        {/* Image */}
-        <div className="relative h-56 w-full bg-gray-200 overflow-hidden">
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-primary-800">
           <Image
             src={image}
             alt={`${title} - Vega Boyasız Göçük Düzeltme`}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 343px"
-            quality={75}
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            quality={72}
             priority={index === 0}
-            loading={index === 0 ? "eager" : "lazy"}
-            placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
           />
-        </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-primary-900/70 via-primary-900/10 to-transparent" />
 
-        {/* Content */}
-        <div className="flex flex-1 flex-col p-6">
-          {/* Icon */}
-          <div
-            className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary-500 text-accent"
+          <span
+            className="absolute bottom-3 left-3 flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-primary-500 shadow-lg shadow-primary-900/20"
             aria-hidden="true"
           >
-            <Icon className="w-6 h-6" strokeWidth={2} />
-          </div>
+            <Icon className="h-5 w-5" strokeWidth={2.5} />
+          </span>
+        </div>
 
-          {/* Title */}
-          <h3 className="mb-2 text-xl font-bold text-primary-500">{title}</h3>
-
-          {/* Description */}
-          <p className="mb-6 flex-1 text-sm leading-relaxed text-slate-custom">
+        <div className="flex flex-1 flex-col p-6">
+          <h3 className="text-xl font-black leading-snug text-primary-500">
+            {title}
+          </h3>
+          <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-custom">
             {description}
           </p>
 
-          {/* CTA */}
-          <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
-            <span className="text-sm font-bold text-primary-500 group-hover:text-accent transition-colors">
-              Detaylı Bilgi
-            </span>
-            <div
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-primary-500 group-hover:bg-accent group-hover:text-primary-500 transition-colors"
-              aria-hidden="true"
-            >
-              <ArrowRight className="w-5 h-5" strokeWidth={2.5} />
-            </div>
-          </div>
+          <span className="mt-6 flex items-center gap-1.5 text-sm font-bold text-primary-500">
+            Detayları gör
+            <ArrowUpRight
+              className="h-4 w-4 text-accent transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              strokeWidth={2.5}
+            />
+          </span>
         </div>
+
+        <span className="card-line absolute bottom-0 left-0 h-[3px] w-full bg-accent" />
       </Link>
     </motion.div>
   );

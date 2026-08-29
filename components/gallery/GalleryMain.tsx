@@ -5,16 +5,12 @@ import { useState } from "react";
 import GalleryHero from "./GalleryHero";
 import GalleryFilters from "./GalleryFilters";
 import GalleryGrid from "./GalleryGrid";
-import ServicesCTA from "../services/ServicesCTA";
+import CtaBand from "@/components/shared/CtaBand";
 
 const GalleryMain = () => {
   const [activeFilter, setActiveFilter] = useState("all");
 
-  const handleFilterChange = (filter: string) => {
-    setActiveFilter(filter);
-    // TODO: Galeri filtreleme logic'i buraya gelecek
-    console.log("Selected filter:", filter);
-  };
+  const handleFilterChange = (filter: string) => setActiveFilter(filter);
   return (
     <>
       <GalleryHero />
@@ -22,14 +18,13 @@ const GalleryMain = () => {
         activeFilter={activeFilter}
         onFilterChange={handleFilterChange}
       />
-      {/* Gallery Grid buraya gelecek */}
-      <div className="min-h-screen bg-primary-700">
-        <div className="max-w-7xl mx-auto py-12">
-          <GalleryGrid activeFilter={activeFilter} />
-          {/* Buraya gallery items component'i gelecek */}
-        </div>
+      <div className="bg-primary-800 pt-12">
+        <GalleryGrid activeFilter={activeFilter} />
       </div>
-      <ServicesCTA />
+      <CtaBand
+        title="Sıradaki 'öncesi' fotoğrafı sizin aracınız olsun."
+        whatsappMessage="Merhaba, galerideki işleri gördüm. Aracımdaki göçük için fotoğraf gönderiyorum."
+      />
     </>
   );
 };

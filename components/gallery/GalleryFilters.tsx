@@ -1,6 +1,8 @@
 "use client";
 
 import { memo, useCallback } from "react";
+import { SlidersHorizontal } from "lucide-react";
+import { GALLERY_ITEMS } from "@/lib/constants";
 
 const FILTER_CATEGORIES = [
   { id: "all", label: "Tümü" },
@@ -17,16 +19,24 @@ const GalleryFilters = memo(function GalleryFilters({
   onFilterChange,
 }: GalleryFiltersProps) {
   const handleFilterClick = useCallback(
-    (filterId: string) => {
-      onFilterChange(filterId);
-    },
-    [onFilterChange]
+    (filterId: string) => onFilterChange(filterId),
+    [onFilterChange],
   );
 
+  const countFor = (id: string) =>
+    id === "all"
+      ? GALLERY_ITEMS.length
+      : GALLERY_ITEMS.filter((item) => item.category === id).length;
+
   return (
-    <section className="bg-primary-700 ">
-      <div className="px-4 sm:px-6 lg:px-0 max-w-7xl mx-auto py-4">
-        <div className="flex overflow-x-auto pb-2 gap-3 no-scrollbar">
+    <section className="sticky top-[72px] z-30 border-y border-white/10 bg-primary-800/92 backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-4 md:px-10">
+        <SlidersHorizontal
+          className="hidden h-4 w-4 shrink-0 text-white/40 sm:block"
+          strokeWidth={2.5}
+          aria-hidden="true"
+        />
+        <div className="no-scrollbar flex gap-2 overflow-x-auto">
           {FILTER_CATEGORIES.map((category) => {
             const isActive = activeFilter === category.id;
 
@@ -34,15 +44,21 @@ const GalleryFilters = memo(function GalleryFilters({
               <button
                 key={category.id}
                 onClick={() => handleFilterClick(category.id)}
-                className={`flex-none px-6 py-2.5 rounded-full text-sm font-bold transition-all whitespace-nowrap ${
+                className={`flex-none rounded-full border px-5 py-2.5 text-sm font-semibold whitespace-nowrap transition-all ${
                   isActive
-                    ? "bg-accent text-primary-500 shadow-md border border-accent"
-                    : "bg-primary-400/50 border border-primary-300 text-white hover:border-accent hover:text-accent hover:shadow-sm"
+                    ? "border-accent bg-accent text-primary-500 shadow-md shadow-accent/20"
+                    : "border-white/15 bg-white/5 text-white/70 hover:border-accent/50 hover:text-white"
                 }`}
                 aria-pressed={isActive}
-                aria-label={`${category.label} kategorisini filtrele`}
               >
                 {category.label}
+                <span
+                  className={`ml-2 text-xs font-bold ${
+                    isActive ? "text-primary-500/70" : "text-white/40"
+                  }`}
+                >
+                  {countFor(category.id)}
+                </span>
               </button>
             );
           })}
