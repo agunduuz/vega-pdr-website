@@ -33,7 +33,7 @@ const InteractiveMap = memo(function InteractiveMap({
         duration: shouldReduceMotion ? 0 : 0.5,
         delay: shouldReduceMotion ? 0 : 0.2,
       }}
-      className="w-full md:w-1/2 h-100 md:h-auto min-h-100 relative bg-slate-800 overflow-hidden group"
+      className="group relative h-80 w-full overflow-hidden bg-slate-800 sm:h-96"
     >
       {!isMapLoaded ? (
         <>
