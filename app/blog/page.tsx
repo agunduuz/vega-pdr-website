@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import BlogHero from "@/components/blog/BlogHero";
 import FeaturedCarousel from "@/components/blog/FeaturedCarousel";
 import BlogExplorer from "@/components/blog/BlogExplorer";
-import BlogCta from "@/components/blog/BlogCta";
+import CtaBand from "@/components/shared/CtaBand";
 import { getAllPosts, getCategories, getFeaturedPosts } from "@/lib/blog";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -102,7 +102,11 @@ export default function BlogPage() {
       />
       <FeaturedCarousel posts={featured} />
       <BlogExplorer posts={posts} categories={categories} />
-      <BlogCta />
+      <CtaBand
+        eyebrow="Ücretsiz ekspertiz"
+        title="Okumak iyidir; aracınızı görmek daha iyi."
+        whatsappMessage="Merhaba, blogdaki yazınızı okudum. Aracımdaki hasar için bilgi almak istiyorum."
+      />
     </>
   );
 }

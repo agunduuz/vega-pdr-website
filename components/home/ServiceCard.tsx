@@ -3,7 +3,7 @@
 import { memo } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, LucideIcon } from "lucide-react";
+import { ArrowUpRight, LucideIcon } from "lucide-react";
 import Image from "next/image";
 
 interface ServiceCardProps {
@@ -16,6 +16,7 @@ interface ServiceCardProps {
   index: number;
   shouldReduceMotion: boolean | null;
 }
+
 const MotionLink = motion.create(Link);
 
 const ServiceCard = memo(function ServiceCard({
@@ -28,76 +29,65 @@ const ServiceCard = memo(function ServiceCard({
   index,
   shouldReduceMotion,
 }: ServiceCardProps) {
-  // Animation variant
   const fadeInUp = shouldReduceMotion
     ? { initial: { opacity: 1 }, animate: { opacity: 1 } }
     : {
-        initial: { opacity: 0, y: 40 },
+        initial: { opacity: 0, y: 28 },
         animate: { opacity: 1, y: 0 },
       };
 
   return (
     <MotionLink
-      href={`/hizmetler/${slug}`} // ✅ slug prop'u ekle
+      href={`/hizmetler/${slug}`}
       {...fadeInUp}
       whileInView="animate"
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-60px" }}
       transition={{
         duration: shouldReduceMotion ? 0 : 0.5,
-        delay: shouldReduceMotion ? 0 : index * 0.1,
+        delay: shouldReduceMotion ? 0 : index * 0.08,
       }}
-      className="group relative flex flex-col justify-end overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 h-100 cursor-pointer will-change-transform"
+      className="group relative flex h-[26rem] flex-col justify-end overflow-hidden rounded-2xl bg-primary-800 shadow-lg transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary-900/20"
       aria-labelledby={`service-${id}`}
     >
-      {/* Background Image with Blur Placeholder */}
-      <div className="absolute inset-0 bg-primary-500/10">
-        <Image
-          src={image}
-          alt={`${title} - Profesyonel araç onarım hizmeti`}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          quality={75}
-          priority={index === 0}
-          placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-        />
-      </div>
+      <Image
+        src={image}
+        alt={`${title} - Vega PDR Samsun`}
+        fill
+        className="object-cover opacity-70 transition-all duration-700 group-hover:scale-105 group-hover:opacity-85"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        quality={72}
+        priority={index === 0}
+      />
 
-      {/* Gradient Overlay */}
       <div
-        className="absolute inset-0 bg-linear-to-t from-primary-500/90 via-primary-500/40 to-transparent"
+        className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/70 to-transparent"
         aria-hidden="true"
       />
 
-      {/* Content */}
-      <div className="relative z-10 p-6 flex flex-col gap-2 transform transition-transform duration-300 group-hover:-translate-y-2">
-        <motion.div
-          whileHover={shouldReduceMotion ? {} : { rotate: 360 }}
-          transition={{ duration: 0.5 }}
-          className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center mb-2 text-primary-500 shadow-lg"
+      <div className="relative z-10 flex flex-col gap-3 p-6">
+        <span
+          className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-primary-500 shadow-lg shadow-accent/20"
           aria-hidden="true"
         >
-          <Icon className="w-5 h-5" strokeWidth={2.5} />
-        </motion.div>
+          <Icon className="h-5 w-5" strokeWidth={2.5} />
+        </span>
 
-        <h3 id={`service-${id}`} className="text-white text-xl font-bold">
+        <h3 id={`service-${id}`} className="text-xl font-black text-white">
           {title}
         </h3>
 
-        <p className="text-gray-200 text-sm font-medium leading-relaxed">
-          {description}
-        </p>
+        <p className="text-sm leading-relaxed text-white/70">{description}</p>
 
-        {/* Hover indicator */}
-        <div
-          className="flex items-center gap-2 text-accent font-bold text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity"
-          aria-hidden="true"
-        >
-          <span>Detaylı Bilgi</span>
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </div>
+        <span className="mt-2 flex items-center gap-1.5 text-sm font-bold text-accent">
+          Detayları gör
+          <ArrowUpRight
+            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            strokeWidth={2.5}
+          />
+        </span>
       </div>
+
+      <span className="card-line absolute bottom-0 left-0 z-10 h-[3px] w-full bg-accent" />
     </MotionLink>
   );
 });

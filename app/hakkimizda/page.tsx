@@ -2,7 +2,7 @@
 import { Metadata } from "next";
 import { SITE_CONFIG } from "@/lib/constants";
 import AboutHero from "@/components/about/AboutHero";
-import ServicesCTA from "@/components/services/ServicesCTA";
+import CtaBand from "@/components/shared/CtaBand";
 import AboutStory from "@/components/about/AboutStory";
 import AboutNarrative from "@/components/about/AboutNarrative";
 import AboutValues from "@/components/about/AboutValues";
@@ -39,7 +39,10 @@ export default function HakkimizdaPage() {
       <AboutStory />
       <AboutValues />
       <AboutWorkshopGallery />
-      <ServicesCTA />
+      <CtaBand
+        title="40 yılın farkını aracınızda görün."
+        whatsappMessage="Merhaba, atölyeniz hakkında bilgi aldım. Aracımdaki hasar için fotoğraf gönderiyorum."
+      />
     </>
   );
 }

@@ -7,6 +7,8 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import GallerySlideCard from "./GallerySlideCard";
+import SectionHeading from "@/components/shared/SectionHeading";
+import { ArrowRight } from "lucide-react";
 
 // ✅ Swiper CSS import (SSR-safe)
 import "swiper/css";
@@ -40,25 +42,24 @@ export default function Gallery() {
     >
       <div className="layout-container flex justify-center">
         <div className="w-full max-w-7xl px-4 md:px-10 flex flex-col gap-10">
-          {/* Section Header */}
-          <motion.div
-            {...fadeInUp}
-            whileInView="animate"
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
-            className="text-center max-w-2xl mx-auto"
-          >
-            <h2
-              id="gallery-heading"
-              className="text-primary-500 text-3xl font-bold mb-4"
-            >
-              Öncesi ve Sonrası
-            </h2>
-            <p className="text-slate-custom">
-              Yaptığımız işlerin kalitesi, tecrübemizin kanıtıdır.
-              Samsun&apos;da binlerce aracı ilk günkü haline döndürdük.
-            </p>
-          </motion.div>
+          <SectionHeading
+            id="gallery-heading"
+            eyebrow="Öncesi & sonrası"
+            title="Işık altında bakın: göçüğün olduğu yerde iz yok"
+            description="Boyasız onarımın sonucu, panele yandan vuran ışıkta belli olur. Aşağıdaki kareler atölyemizde tamamlanan işlerden."
+            action={
+              <Link
+                href="/galeri"
+                className="group inline-flex items-center gap-2 rounded-full border border-primary-500/20 bg-white px-5 py-3 text-sm font-bold text-primary-500 transition-all hover:border-accent hover:bg-accent"
+              >
+                Tüm galeri
+                <ArrowRight
+                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                  strokeWidth={2.5}
+                />
+              </Link>
+            }
+          />
 
           {/* Swiper Carousel */}
           <motion.div

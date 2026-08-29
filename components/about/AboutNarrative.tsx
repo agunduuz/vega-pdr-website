@@ -15,7 +15,7 @@ const AboutNarrative = () => {
         {/* Block 1: Ustalık Sabır İster */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
           {/* Görsel */}
-          <div className="relative h-[300px] sm:h-[400px] md:h-[500px] w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-lg bg-gray-100">
+          <div className="relative h-[300px] w-full overflow-hidden rounded-2xl bg-gray-100 shadow-lg sm:h-[400px] md:h-[500px]">
             <Image
               src="/images/about/hands-pdr-tools.webp"
               alt="Uzman PDR ustasının elleri ile araç kapısında göçük düzeltme aletlerini kullanması"
@@ -29,12 +29,12 @@ const AboutNarrative = () => {
           {/* İçerik */}
           <div className="flex flex-col gap-4 sm:gap-6 md:pl-6 lg:pl-10">
             <div className="flex items-center gap-2">
-              <span className="h-[2px] w-6 sm:w-8 bg-accent"></span>
-              <span className="text-primary-500 font-bold uppercase tracking-widest text-xs sm:text-sm">
+              <span className="h-px w-10 bg-accent"></span>
+              <span className="text-xs font-bold uppercase tracking-[0.24em] text-accent">
                 Bizim Hikayemiz
               </span>
             </div>
-            <h2 className="text-primary-500 text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
+            <h2 className="text-2xl font-black leading-tight text-primary-500 text-balance sm:text-3xl md:text-4xl">
               Ustalık Sabır İster
             </h2>
             <p className="text-slate-custom text-base sm:text-lg leading-relaxed">
@@ -60,12 +60,12 @@ const AboutNarrative = () => {
           {/* İçerik */}
           <div className="flex flex-col gap-4 sm:gap-6 order-2 md:order-1 md:pr-6 lg:pr-10">
             <div className="flex items-center gap-2">
-              <span className="h-[2px] w-6 sm:w-8 bg-accent"></span>
-              <span className="text-primary-500 font-bold uppercase tracking-widest text-xs sm:text-sm">
+              <span className="h-px w-10 bg-accent"></span>
+              <span className="text-xs font-bold uppercase tracking-[0.24em] text-accent">
                 Modern Yaklaşım
               </span>
             </div>
-            <h2 className="text-primary-500 text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
+            <h2 className="text-2xl font-black leading-tight text-primary-500 text-balance sm:text-3xl md:text-4xl">
               Gelenek ve Teknoloji Bir Arada
             </h2>
             <p className="text-slate-custom text-base sm:text-lg leading-relaxed">

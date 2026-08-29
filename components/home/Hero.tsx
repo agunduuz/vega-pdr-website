@@ -1,143 +1,118 @@
-"use client";
-
-import { useMemo } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { BadgeCheck } from "lucide-react";
-import { SITE_CONFIG } from "@/lib/constants";
 import Link from "next/link";
 import Image from "next/image";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { ArrowRight, Camera, MapPin, Star } from "lucide-react";
+import { SITE_CONFIG } from "@/lib/constants";
 
+const STATS = [
+  { value: "40", label: "yıllık atölye tecrübesi" },
+  { value: "10.000+", label: "onarılan araç" },
+  { value: "1 yıl", label: "işçilik garantisi" },
+];
+
+const WHATSAPP_LINK = `https://wa.me/${SITE_CONFIG.phone.replace(
+  /[^\d]/g,
+  "",
+)}?text=${encodeURIComponent(
+  "Merhaba, aracımdaki göçüğün fotoğrafını gönderiyorum. Fiyat ve süre bilgisi alabilir miyim?",
+)}`;
+
+/**
+ * Ana sayfa hero'su. Giriş animasyonu CSS ile yapılır: içerik JavaScript
+ * yüklenmeden de görünür olur (bkz. globals.css → .reveal).
+ */
 export default function Hero() {
-  // 1. useMemo ile WhatsApp link cache'le
-  const whatsappLink = useMemo(() => {
-    return `https://wa.me/${SITE_CONFIG.phone.replace(
-      /\s/g,
-      "",
-    )}?text=${encodeURIComponent(SITE_CONFIG.whatsappMessage)}`;
-  }, []);
-
-  // 2. Reduced motion preference kontrol et
-  const shouldReduceMotion = useReducedMotion();
-
-  // 3. Media query - Desktop mi Mobile mi?
-  const isDesktop = useMediaQuery("(min-width: 768px)");
-
-  // 4. Animation variants (reduced motion için)
-  const fadeInUp = shouldReduceMotion
-    ? { initial: { opacity: 1 }, animate: { opacity: 1 } }
-    : {
-        initial: { opacity: 0, y: 20 },
-        animate: { opacity: 1, y: 0 },
-      };
-
-  // 5. Content variants (mobile/desktop için)
-  const headingText = isDesktop
-    ? "40 Yıllık Tecrübe ile"
-    : "40 Yıllık Tecrübe ile";
-
-  const descriptionText = isDesktop
-    ? "Aracınızın orijinal değerini koruyun. Dolu hasarı, park göçüğü ve kaporta onarımında uzman dokunuşlar. Orijinal boyayı bozmadan %100 müşteri memnuniyeti."
-    : "Aracınızın orijinal değerini koruyun. Orijinal boyayı bozmadan profesyonel onarım.";
-
   return (
     <section
-      className="relative w-full flex justify-center"
-      aria-label="Hero bölümü"
+      className="relative overflow-hidden bg-primary-800 pt-28 pb-14 sm:pt-36 sm:pb-20"
+      aria-label="Giriş bölümü"
     >
-      <div className="w-full max-w-7xl p-4 md:px-10 md:py-8">
-        <div className="relative overflow-hidden rounded-xl bg-primary-500 text-white shadow-2xl min-h-125 md:min-h-150 flex flex-col justify-end">
-          {/* Background Image with Next.js Image */}
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/images/hero-bg.webp"
-              alt="Profesyonel araç boyasız göçük düzeltme ve kaporta onarım hizmeti"
-              fill
-              priority
-              fetchPriority="high"
-              quality={75}
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 1280px"
-            />
-            {/* Gradient Overlay */}
-            <div
-              className="absolute inset-0 bg-linear-to-t from-primary-500/95 via-primary-500/60 to-primary-500/40"
-              aria-hidden="true"
-            />
-          </div>
+      {/* Atölye görseli, panel dokusu ve imza ışık hattı */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <Image
+          src="/images/hero-bg.webp"
+          alt=""
+          fill
+          priority
+          fetchPriority="high"
+          quality={70}
+          sizes="100vw"
+          className="object-cover opacity-25"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-900 via-primary-900/85 to-primary-800/40" />
+      </div>
+      <div className="blog-grid-lines absolute inset-0" aria-hidden="true" />
+      <div className="light-sweep" aria-hidden="true" />
+      <div
+        className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent"
+        aria-hidden="true"
+      />
 
-          <div className="relative z-10 w-full max-w-180 p-6 md:p-12 lg:p-16 flex flex-col gap-4 md:gap-6 items-start">
-            {/* Badge */}
-            <motion.div
-              {...fadeInUp}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
-              className="inline-flex items-center rounded-full bg-accent/20 px-3 py-1.5 text-xs md:text-sm font-bold text-accent backdrop-blur-sm border border-accent/20"
-              role="status"
-              aria-label="Samsun'un en iyi boyasız göçük düzeltme hizmeti"
-            >
-              <BadgeCheck
-                className="w-3.5 h-3.5 md:w-4 md:h-4 mr-1.5"
-                aria-hidden="true"
-              />
-              <span>Samsun&apos;un En İyisi</span>
-            </motion.div>
-
-            {/* Main Heading - Single Render */}
-            <motion.h1
-              {...fadeInUp}
-              transition={{
-                duration: shouldReduceMotion ? 0 : 0.5,
-                delay: shouldReduceMotion ? 0 : 0.1,
-              }}
-              className="text-3xl md:text-5xl lg:text-6xl font-black leading-[1.15] md:leading-[1.1] tracking-tight text-white"
-            >
-              {headingText}
-              <br />
-              <span className="text-accent">Boyasız Göçük Düzeltme</span>
-            </motion.h1>
-
-            {/* Description - Single Render */}
-            <motion.p
-              {...fadeInUp}
-              transition={{
-                duration: shouldReduceMotion ? 0 : 0.5,
-                delay: shouldReduceMotion ? 0 : 0.2,
-              }}
-              className="text-base md:text-lg lg:text-xl font-normal text-gray-200 leading-relaxed max-w-150"
-            >
-              {descriptionText}
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              {...fadeInUp}
-              transition={{
-                duration: shouldReduceMotion ? 0 : 0.5,
-                delay: shouldReduceMotion ? 0 : 0.3,
-              }}
-              className="flex flex-col w-full sm:flex-row sm:w-auto gap-3 md:gap-4 mt-2"
-              role="group"
-              aria-label="Ana eylem butonları"
-            >
-              <Link
-                href={whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-12 items-center justify-center rounded-lg bg-accent px-6 md:px-8 text-primary-500 font-bold text-sm md:text-base hover:bg-accent-light transition-colors shadow-lg shadow-accent/20"
-                aria-label="WhatsApp üzerinden fiyat teklifi alın"
-              >
-                WhatsApp ile Fiyat Al
-              </Link>
-              <Link
-                href="#services"
-                className="flex h-12 items-center justify-center rounded-lg bg-white/10 px-6 md:px-8 text-white font-semibold text-sm md:text-base backdrop-blur-sm hover:bg-white/20 transition-colors border border-white/20"
-                aria-label="Hizmetlerimiz bölümüne git"
-              >
-                Hizmetlerimiz
-              </Link>
-            </motion.div>
-          </div>
+      <div className="relative mx-auto max-w-7xl px-4 md:px-10">
+        <div className="reveal flex flex-wrap items-center gap-3">
+          <span className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">
+            <MapPin className="h-3.5 w-3.5 text-accent" strokeWidth={2.5} />
+            Atakum · Samsun
+          </span>
+          <span className="flex items-center gap-1.5 text-xs font-semibold text-white/60">
+            <Star className="h-3.5 w-3.5 fill-accent text-accent" />
+            1984&apos;ten beri aynı atölye, aynı ustalık
+          </span>
         </div>
+
+        <h1 className="reveal reveal-1 mt-7 max-w-4xl text-4xl font-black leading-[1.06] text-white text-balance sm:text-5xl lg:text-[4rem]">
+          Göçüğü boyamadan,{" "}
+          <span className="relative inline-block text-accent">
+            değer kaybettirmeden
+            <span className="absolute -bottom-1 left-0 h-[3px] w-full bg-accent/30" />
+          </span>{" "}
+          düzeltiyoruz.
+        </h1>
+
+        <p className="reveal reveal-2 mt-6 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
+          Dolu hasarı, park vuruğu ve kapı eziği… Aracınızın fabrika boyasına
+          dokunmadan, macun ve boya kullanmadan onarıyoruz. Ekspertiz ücretsiz,
+          fiyat hasarı gördükten sonra.
+        </p>
+
+        <div className="reveal reveal-3 mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <Link
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-sm font-black text-primary-500 shadow-lg shadow-accent/25 transition-all hover:scale-[1.02] hover:bg-accent-light active:scale-95 sm:text-base"
+          >
+            <Camera className="h-5 w-5" strokeWidth={2.5} />
+            Fotoğraf gönder, 15 dk&apos;da fiyat al
+          </Link>
+
+          <Link
+            href="/hizmetler"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-4 text-sm font-bold text-white transition-colors hover:border-accent hover:text-accent sm:text-base"
+          >
+            Hizmetleri incele
+            <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+          </Link>
+        </div>
+
+        <p className="reveal reveal-4 mt-4 text-xs text-white/50">
+          Ekspertiz ve fiyat teklifi ücretsizdir; karar tamamen sizindir.
+        </p>
+
+        <dl className="reveal reveal-5 mt-11 grid max-w-2xl grid-cols-3 gap-6 border-t border-white/10 pt-8">
+          {STATS.map((stat) => (
+            <div key={stat.label}>
+              <dt className="sr-only">{stat.label}</dt>
+              <dd>
+                <span className="block text-2xl font-black text-accent sm:text-3xl">
+                  {stat.value}
+                </span>
+                <span className="mt-1 block text-xs leading-snug text-white/60">
+                  {stat.label}
+                </span>
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

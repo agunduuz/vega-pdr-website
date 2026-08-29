@@ -1,5 +1,5 @@
 // components/about/AboutStory.tsx
-import { Clock, Award, Users, TrendingUp } from "lucide-react";
+import { Award, Users, TrendingUp } from "lucide-react";
 
 const MILESTONES = [
   {
@@ -34,13 +34,10 @@ const AboutStory = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Başlık */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 mb-4 sm:mb-6">
-            <span
-              className="size-1.5 sm:size-2 rounded-full bg-accent"
-              aria-hidden="true"
-            ></span>
-            <span className="text-accent text-[10px] sm:text-xs font-bold uppercase tracking-wider">
-              Hikayemiz
+          <div className="mb-5 flex items-center justify-center gap-3">
+            <span className="h-px w-10 bg-accent" />
+            <span className="text-xs font-bold uppercase tracking-[0.24em] text-accent">
+              Hikâyemiz
             </span>
           </div>
           <h2 className="text-primary-500 text-3xl sm:text-4xl md:text-5xl font-black mb-4 sm:mb-6">
@@ -99,7 +96,7 @@ const AboutStory = () => {
                       isEven ? "lg:col-start-1 lg:text-right" : "lg:col-start-2"
                     }`}
                   >
-                    <div className="bg-background-light rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-shadow border border-gray-100">
+                    <div className="rounded-2xl border border-primary-500/10 bg-background-light p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary-500/10 sm:p-8">
                       <span className="inline-block text-accent text-xl sm:text-2xl font-black mb-2 sm:mb-3">
                         {milestone.year}
                       </span>

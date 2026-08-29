@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import ServiceCard from "./ServiceCard";
+import SectionHeading from "@/components/shared/SectionHeading";
 
 // Icon mapping - Component DIŞINDA
 const iconMap: Record<string, LucideIcon> = {
@@ -23,21 +24,6 @@ export default function Services() {
   // Reduced motion preference kontrol et
   const shouldReduceMotion = useReducedMotion();
 
-  // Animation variants
-  const fadeInLeft = shouldReduceMotion
-    ? { initial: { opacity: 1 }, animate: { opacity: 1 } }
-    : {
-        initial: { opacity: 0, x: -20 },
-        animate: { opacity: 1, x: 0 },
-      };
-
-  const fadeInRight = shouldReduceMotion
-    ? { initial: { opacity: 1 }, animate: { opacity: 1 } }
-    : {
-        initial: { opacity: 0, x: 20 },
-        animate: { opacity: 1, x: 0 },
-      };
-
   const fadeInUp = shouldReduceMotion
     ? { initial: { opacity: 1 }, animate: { opacity: 1 } }
     : {
@@ -47,60 +33,32 @@ export default function Services() {
 
   return (
     <section
-      className="relative w-full flex flex-col items-center py-16 bg-background-light"
+      className="relative w-full bg-background-light py-16 sm:py-20"
       id="services"
       aria-labelledby="services-heading"
     >
-      <div className="w-full max-w-7xl px-4 md:px-10">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
-          <div className="flex flex-col gap-2">
-            <motion.span
-              {...fadeInLeft}
-              whileInView="animate"
-              viewport={{ once: true }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
-              className="text-accent font-bold tracking-wider text-xs md:text-sm uppercase [text-shadow:0_1px_2px_rgba(0,0,0,0.3)]"
-              aria-label="Hizmet kategorisi"
-            >
-              Uzmanlık Alanlarımız
-            </motion.span>
-            <motion.h2
-              id="services-heading"
-              {...fadeInLeft}
-              whileInView="animate"
-              viewport={{ once: true }}
-              transition={{
-                duration: shouldReduceMotion ? 0 : 0.5,
-                delay: shouldReduceMotion ? 0 : 0.1,
-              }}
-              className="text-primary-500 text-2xl md:text-3xl lg:text-4xl font-bold leading-tight"
-            >
-              Profesyonel Onarım Hizmetleri
-            </motion.h2>
-          </div>
-
-          {/* Desktop Only Link */}
-          <motion.div
-            {...fadeInRight}
-            whileInView="animate"
-            viewport={{ once: true }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
-            className="hidden md:flex"
-          >
+      <div className="mx-auto w-full max-w-7xl px-4 md:px-10">
+        <SectionHeading
+          id="services-heading"
+          eyebrow="Uzmanlık alanlarımız"
+          title="Hasarın türü değişir, yaklaşımımız değişmez"
+          description="Her hasar aynı yöntemi kabul etmez. Aracınıza hangisinin uyduğunu ücretsiz ekspertizde birlikte belirliyoruz."
+          action={
             <Link
               href="/hizmetler"
-              className="text-primary-500 font-bold hover:text-accent flex items-center gap-1 transition-colors group"
-              aria-label="Tüm hizmetleri görüntüle"
+              className="group inline-flex items-center gap-2 rounded-full border border-primary-500/20 bg-white px-5 py-3 text-sm font-bold text-primary-500 transition-all hover:border-accent hover:bg-accent"
             >
-              Tüm Hizmetleri Gör
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              Tüm hizmetler
+              <ArrowRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                strokeWidth={2.5}
+              />
             </Link>
-          </motion.div>
-        </div>
+          }
+        />
 
-        {/* Services Grid - Now using ServiceCard component */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Kartlar */}
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {SERVICES.map((service, index) => (
             <ServiceCard
               key={service.id}
@@ -129,11 +87,14 @@ export default function Services() {
         >
           <Link
             href="/hizmetler"
-            className="text-primary-500 font-bold hover:text-accent flex items-center gap-2 transition-colors group px-6 py-3 rounded-lg border-2 border-primary-500 hover:bg-primary-500 hover:text-white"
+            className="group flex items-center gap-2 rounded-full border border-primary-500/20 bg-white px-6 py-3.5 text-sm font-bold text-primary-500 transition-all hover:border-accent hover:bg-accent"
             aria-label="Tüm hizmetleri görüntüle"
           >
-            Tüm Hizmetleri Gör
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            Tüm hizmetleri gör
+            <ArrowRight
+              className="h-4 w-4 transition-transform group-hover:translate-x-1"
+              strokeWidth={2.5}
+            />
           </Link>
         </motion.div>
       </div>

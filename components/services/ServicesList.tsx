@@ -6,6 +6,7 @@ import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Wrench, Droplet, Cloud, Car } from "lucide-react";
 import { SERVICES_PAGE_DATA, FAQ_DATA, SITE_CONFIG } from "@/lib/constants";
 import ServiceCard from "./ServiceCard";
+import SectionHeading from "@/components/shared/SectionHeading";
 
 // Icon mapping
 const ICON_MAP = {
@@ -50,35 +51,21 @@ const ServicesList = memo(function ServicesList() {
 
   return (
     <main
-      className="grow bg-gray-50 py-16 sm:py-24"
+      className="grow bg-background-light py-16 sm:py-24"
       id="hizmetler"
       aria-labelledby="services-heading"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <motion.div
-          {...fadeInUp}
-          whileInView="animate"
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: shouldReduceMotion ? 0 : 0.5 }}
-          className="mb-12 md:flex md:items-end md:justify-between"
-        >
-          <div className="max-w-2xl">
-            <h2
-              id="services-heading"
-              className="text-3xl font-black tracking-tight text-primary-500 sm:text-4xl"
-            >
-              Hizmetlerimiz
-            </h2>
-            <p className="mt-4 text-lg text-slate-custom">
-              İhtiyacınıza uygun, hızlı ve güvenilir çözümler.
-            </p>
-          </div>
-        </motion.div>
+        <SectionHeading
+          id="services-heading"
+          eyebrow="Hizmetlerimiz"
+          title="İhtiyacınıza göre dört farklı çözüm"
+          description="Hangisinin aracınıza uyduğundan emin değilseniz fotoğraf gönderin; doğru yöntemi biz söyleyelim."
+        />
 
         {/* Services Grid */}
         <div
-          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+          className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3"
           role="list"
           aria-label="Hizmet listesi"
         >
@@ -108,34 +95,47 @@ const ServicesList = memo(function ServicesList() {
           }}
           className="mt-20 max-w-3xl mx-auto"
         >
-          <h3
-            className="text-2xl font-bold text-primary-500 mb-8 text-center"
-            id="faq-heading"
-          >
-            Sıkça Sorulan Sorular
-          </h3>
+          <div className="mb-8 text-center">
+            <span className="text-xs font-bold uppercase tracking-[0.24em] text-accent">
+              Sıkça sorulanlar
+            </span>
+            <h3
+              className="mt-3 text-2xl font-black text-primary-500 sm:text-3xl"
+              id="faq-heading"
+            >
+              Aklınıza takılanlar
+            </h3>
+          </div>
 
           <div className="space-y-4" role="list" aria-labelledby="faq-heading">
             {FAQ_DATA.map((faq) => (
               <div
                 key={faq.id}
-                className="rounded-lg border border-gray-200 bg-white transition-all"
+                className="overflow-hidden rounded-2xl border border-primary-500/10 bg-white transition-all hover:border-primary-500/20"
                 role="listitem"
               >
                 <button
                   onClick={() => toggleFaq(faq.id)}
-                  className="flex w-full cursor-pointer items-center justify-between p-4 text-left font-bold text-primary-500 hover:text-accent transition-colors"
+                  className="flex w-full cursor-pointer items-center justify-between gap-4 p-5 text-left font-bold text-primary-500 transition-colors hover:text-primary-700"
                   aria-expanded={openFaq === faq.id}
                   aria-controls={`faq-answer-${faq.id}`}
                 >
                   <span>{faq.question}</span>
-                  <ChevronDown
-                    className={`w-5 h-5 transition-transform ${
-                      openFaq === faq.id ? "rotate-180" : ""
+                  <span
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all ${
+                      openFaq === faq.id
+                        ? "bg-accent text-primary-500"
+                        : "bg-background-light text-primary-500"
                     }`}
-                    strokeWidth={2.5}
                     aria-hidden="true"
-                  />
+                  >
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform ${
+                        openFaq === faq.id ? "rotate-180" : ""
+                      }`}
+                      strokeWidth={2.5}
+                    />
+                  </span>
                 </button>
 
                 <AnimatePresence>
@@ -150,7 +150,7 @@ const ServicesList = memo(function ServicesList() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-4 pb-4">
+                      <div className="px-5 pb-5">
                         <p className="text-sm leading-relaxed text-slate-custom">
                           {faq.answer}
                         </p>

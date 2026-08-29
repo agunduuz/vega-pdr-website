@@ -25,24 +25,32 @@ const VALUES = [
 const AboutValues = () => {
   return (
     <section className="bg-white py-12 sm:py-16 md:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      <div className="mx-auto max-w-7xl px-4 md:px-10">
+        <div className="mb-10 flex items-center gap-3">
+          <span className="h-px w-10 bg-accent" />
+          <span className="text-xs font-bold uppercase tracking-[0.24em] text-accent">
+            Çalışma ilkelerimiz
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {VALUES.map((value) => {
             const Icon = value.icon;
             return (
               <div
                 key={value.title}
-                className="bg-background-light rounded-xl p-6 sm:p-8 border border-gray-100 hover:border-accent hover:shadow-lg transition-all group"
+                className="group relative overflow-hidden rounded-2xl border border-primary-500/10 bg-background-light p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary-500/20 hover:shadow-xl hover:shadow-primary-500/10"
               >
-                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-primary-500/10 rounded-lg flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-accent transition-colors">
-                  <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-primary-500 group-hover:text-primary-500" />
-                </div>
-                <h3 className="text-primary-500 text-lg sm:text-xl font-bold mb-2 sm:mb-3">
+                <span className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary-500 text-accent transition-colors group-hover:bg-accent group-hover:text-primary-500">
+                  <Icon className="h-6 w-6" strokeWidth={2.2} />
+                </span>
+                <h3 className="mb-3 text-lg font-black text-primary-500 sm:text-xl">
                   {value.title}
                 </h3>
-                <p className="text-slate-custom text-sm sm:text-base leading-relaxed">
+                <p className="text-sm leading-relaxed text-slate-custom">
                   {value.description}
                 </p>
+                <span className="card-line absolute bottom-0 left-0 h-[3px] w-full bg-accent" />
               </div>
             );
           })}

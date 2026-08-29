@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { SITE_CONFIG } from "@/lib/constants";
 import ContactHero from "@/components/contact/ContactHero";
 import ContactForm from "@/components/contact/ContactForm";
+import CtaBand from "@/components/shared/CtaBand";
 
 export const metadata: Metadata = {
   title: `İletişim | ${SITE_CONFIG.fullName}`,
@@ -32,7 +33,12 @@ export default function IletisimPage() {
     <>
       <ContactHero />
       <ContactForm />
-      {/* Diğer componentler buraya gelecek */}
+      <CtaBand
+        eyebrow="Kısa yol"
+        title="Form doldurmak istemiyorsanız, tek fotoğraf yeterli."
+        description="Göçüğün yandan çekilmiş bir karesini WhatsApp'tan gönderin; yöntemi ve fiyat aralığını 15 dakikada iletelim."
+        whatsappMessage="Merhaba, aracımdaki hasarın fotoğrafını gönderiyorum. Bilgi alabilir miyim?"
+      />
     </>
   );
 }
