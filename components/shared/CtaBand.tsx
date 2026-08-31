@@ -1,12 +1,11 @@
-import Link from "next/link";
-import { ArrowRight, Camera, Phone, ShieldCheck, Timer } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
+import { ArrowRight, Camera, Phone, Timer } from "lucide-react";
+import Link from "next/link";
 
 const PHONE_DIGITS = SITE_CONFIG.phone.replace(/[^\d]/g, "");
 
 const DEFAULT_POINTS = [
   { icon: Camera, text: "Fotoğrafla 15 dakikada ön değerlendirme" },
-  { icon: ShieldCheck, text: "1 yıl işçilik garantisi" },
   { icon: Timer, text: "Tekil göçüklerde çoğunlukla aynı gün teslim" },
 ];
 
@@ -91,8 +90,8 @@ export default function CtaBand({
 
           <ul className="space-y-4 lg:border-l lg:border-white/10 lg:pl-10">
             {DEFAULT_POINTS.map(({ icon: Icon, text }) => (
-              <li key={text} className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/5">
+              <li key={text} className="flex items-center gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/5">
                   <Icon className="h-4 w-4 text-accent" strokeWidth={2.5} />
                 </span>
                 <span className="text-sm font-medium leading-relaxed text-white/80">
