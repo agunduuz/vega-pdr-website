@@ -6,7 +6,10 @@ import StickyCta from "@/components/shared/StickyCta";
 import { SITE_CONFIG, OPENING_HOURS_SCHEMA } from "@/lib/constants";
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
+
+const GA_MEASUREMENT_ID = "G-9JGLE8TW7Y";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -136,6 +139,19 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${manrope.variable} ${inter.className}`}>
+        {/* ✅ Google tag (gtag.js) */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
